@@ -36,21 +36,21 @@ CONTACT = [
     "+256 754 687 597",
     "+256 768 593 543",
     "mubogigastavasjordan@gmail.com",
-    "github.com/MAYI12333",
+    "github.com/Mubogi",
 ]
 
 SUMMARY = (
     "Results-driven ICT professional with a Bachelor of Science in Information Technology and "
     "wide experience across software development, teaching, sales, finance, media and leadership. "
-    "I find real problems in Ugandan schools, SACCOs, SMEs and churches and turn them into working "
-    "software - seven products designed, built and shipped so far, including a live marketplace "
-    "that takes mobile-money payments. I am a self-taught multi-skilled creator: graphic design, "
-    "content creation, video editing, church media and ICT training. I lead teams, plan events, "
-    "manage money carefully, and I am equally comfortable in front of a class, a client or a camera. "
-    "I am open to any role - part-time or full-time - and I work well under pressure."
+    "I have designed, built and shipped over a dozen working software products for Ugandan "
+    "schools, SACCOs, clinics, SMEs and churches - including live marketplaces, banking and "
+    "clinic systems, mobile apps and a generative-AI kids' studio. I am a self-taught "
+    "multi-skilled creator: graphic design, content creation, video editing, church media and ICT "
+    "training. I lead teams, plan events, manage money carefully, and I am equally comfortable in "
+    "front of a class, a client or a camera. I am open to any role - part-time or full-time - and "
+    "I work well under pressure."
 )
 
-# Profile strip shown under the summary
 PROFILE = [
     ("Role I want", "Any lucrative ICT, software, teaching, sales, media or administrative role"),
     ("Availability", "Full-time or part-time; short-term contracts welcome; works well under pressure"),
@@ -61,18 +61,26 @@ PROFILE = [
 
 SKILLS = [
     ("Software & Web Development",
-     "Python, Django 5, Flask, SQLAlchemy, JavaScript, Node.js, Express, Socket.IO, SQL "
-     "(SQLite & PostgreSQL), REST APIs, HTML5, CSS3, Bootstrap 5, Tailwind CSS, Alpine.js, "
-     "Jinja2, PWA, Flutter (Dart)"),
+     "Python, Django 5, Flask, SQLAlchemy, JavaScript, TypeScript, React 18, Node.js, Express, "
+     "Socket.IO, GraphQL/Apollo, SQL (SQLite & PostgreSQL), REST APIs, HTML5, CSS3, Bootstrap 5, "
+     "Tailwind CSS, Alpine.js, MUI, Jinja2, PWA"),
+    ("Mobile & Desktop",
+     "Flutter (Dart), Kotlin (native Android, Room), Capacitor, PyInstaller (Windows EXE), "
+     "offline-first sync (PouchDB / IndexedDB), LAN device linking"),
     ("AI & Automation",
      "AI-assisted development with OpenHands, learning to design and build AI agents, prompt "
-     "engineering, automating content and document generation (ReportLab PDFs)"),
+     "engineering, open-source generative AI (text-to-video, image-to-video), ML basics "
+     "(scikit-learn), automating content and document generation (ReportLab PDFs)"),
+    ("Data & Backend Systems",
+     "Database design, Prisma, migrations, authentication, role-based access control, audit "
+     "logging, webhooks, mobile-money payments (Flutterwave / MTN MoMo / Airtel)"),
     ("Creative & Media",
      "Graphic design (Canva, InShot), content creation, video editing, church media and sound "
      "systems, livestreaming (OBS / OpenLP), branding and promotional materials"),
     ("IT & Technical Support",
      "ICT training and teaching, computer literacy, web design, networking basics, software "
-     "installation, troubleshooting, Git & GitHub, cloud deployment (Render), Linux command line"),
+     "installation, troubleshooting, Git & GitHub, GitHub Actions, cloud deployment (Render), "
+     "Linux command line"),
     ("Finance & Organisational Strategy",
      "Budgeting, credit assessment, financial management, workflow optimisation, record keeping, "
      "project planning"),
@@ -100,8 +108,8 @@ EXPERIENCE = [
         "org": "Jordan Design Hub (JD Hub)",
         "meta": "Kampala, Uganda  |  2025 - Present",
         "bullets": [
-            "Founded and run Jordan Design Hub, delivering web and mobile apps, an online academy, ICT consultancy and media services to schools, SACCOs, SMEs and churches in Uganda.",
-            "Took seven products from idea to a working, deployed state: JD Hub, MyMarket.ug, BizDocs, KJ, UCSCU Connect, Attendance Hub and the Offline-First School Management System.",
+            "Founded and run Jordan Design Hub, delivering web and mobile apps, an online academy, ICT consultancy and media services to schools, SACCOs, clinics, SMEs and churches in Uganda.",
+            "Took more than a dozen products from idea to a working, deployed state - web platforms, mobile apps, desktop software and AI tools (full list under Key Projects).",
             "Handle the whole journey: listening to the client, deciding what to build, building it with AI-assisted development (OpenHands), testing, deploying, and explaining it back to the client.",
             "Set up automated processes that generate whitepaper PDFs, 48 lesson-outline PDFs, 90 marketing posters and a promo video.",
             "Design the brand, marketing materials and content that promote the products, and manage the budgets behind each project.",
@@ -182,7 +190,20 @@ EXPERIENCE = [
     },
 ]
 
+# Financial / institutional systems
 PROJECTS = [
+    ("ClinicSync - Clinic, Pharmacy & Drug-Shop System (live, Android + Windows + Linux)", [
+        "An offline-first hospital, clinic and drug-shop system for low-resource settings: all reads and writes hit the local database first and sync to the cloud when the network returns.",
+        "Point-of-sale with fast drug search, selling by tablet / strip / box, printable 80 mm thermal receipts; daily expenses; and a one-click end-of-day balance sheet with MTN/Airtel mobile-money reconciliation.",
+        "Inventory with FEFO (first-expire-first-out) batch expiry and reorder levels; tiered SaaS plans (Basic / Premium / Pro).",
+        "Shipped installers for Android (APK), Windows (EXE) and Linux (AppImage / .deb), with device-bound activation licensing.",
+        "Built with React/Vite, Tailwind, Express, Prisma and PouchDB.",
+    ]),
+    ("JD Hub CBS - Co-operative Banking System for SACCOs (prototype)", [
+        "A modern core-banking system for SACCOs and credit unions, re-branded from a UCSCU CBS client.",
+        "Multi-user demo hub that gives each user an isolated instance behind a reverse proxy (JupyterHub-style).",
+        "Built with React 18, TypeScript, MUI, Apollo GraphQL and a mock GraphQL backend.",
+    ]),
     ("MyMarket.ug - Multi-Vendor Marketplace (live)", [
         "An online marketplace where Ugandan vendors each get their own shop page; customers browse and buy without an account.",
         "Takes real mobile-money payments through Flutterwave (MTN MoMo / Airtel); product photos are compressed for fast loading on 3G.",
@@ -193,22 +214,38 @@ PROJECTS = [
         "Handles URA TIN details, UGX amounts and MTN/Airtel mobile-money payment tracking; exports to A4 or thermal PDF.",
         "Built with Flutter (Dart).",
     ]),
-    ("JD Hub - Company Website & Platform (live)", [
-        "The public site for Jordan Design Hub: systems showcase, academy catalogue, services, design gallery and WhatsApp lead capture.",
-        "Includes a simple shop with mobile-money payment and a secure 48-hour download link after approval.",
-        "Built with Django 5 and Bootstrap 5; deployed on Render.",
-    ]),
     ("UCSCU Connect - SACCO Apex Platform (in progress)", [
         "A platform to help UCSCU run apex operations and internal workplace processes digitally (see the UCSCU role above).",
         "Built with Python, Flask and SQLAlchemy.",
     ]),
-    ("Attendance Hub - Church & Event Check-in (in use)", [
-        "A check-in system for churches and events on a single Windows computer, with member registration, reports and Excel export.",
-        "Built with Django and packaged as a Windows app so it works offline at the door.",
-    ]),
     ("Offline-First School Management System (in use)", [
-        "Covers students, teachers, fees, marks and reports, and works without internet; licensed per school and tied to the computer.",
+        "Covers students, teachers, fees, marks and reports, works without internet, and uses 9 role-based access levels; licensed per school and tied to the computer (HWID).",
+        "Includes a QR parent kiosk and a multi-tenant cloud hub for sync, licensing and backups.",
         "Built with Django as an installable desktop application.",
+    ]),
+    ("Attendance Hub - Church & Event Check-in (web + native Android)", [
+        "A check-in system for churches and events with member registration, reports and Excel export; the native Android version needs no server or internet at all.",
+        "The Android app adds LAN device linking so several phones on the same Wi-Fi share attendance in real time, plus activation keys and PDF reports.",
+        "Built with Django (web) and Kotlin + Room + NanoHTTPD (Android).",
+    ]),
+    ("Kids AI Studio - Generative-AI Kids' Video Maker (open source)", [
+        "Turns one sentence into a finished animated kids' story video or sing-along song, using open-source generative AI models on a free Kaggle GPU.",
+        "Generates scenes, music, narration and captions into a finished MP4, with an image-to-video mode for personal pictures.",
+        "Built in Python with ffmpeg and text-to-video / image-to-video models.",
+    ]),
+    ("MT5 Algorithmic Trading Bot (open source)", [
+        "A discipline-first MetaTrader 5 bot with ML signal generation (RandomForest), a 0.01-lot cap, a $10 daily circuit breaker, an 80/20 profit vault and Discord remote control.",
+        "Includes a vectorized backtester with walk-forward out-of-sample validation and per-strategy kill switches.",
+        "Built in Python (scikit-learn, MT5 API).",
+    ]),
+    ("Savings Bank SACCO App (recovered & improved)", [
+        "A Flutter savings-and-credit app for SACCO members, recovered and improved from an earlier build.",
+        "Built with Flutter (Dart).",
+    ]),
+    ("JD Hub - Company Website & Platform (live)", [
+        "The public site for Jordan Design Hub: systems showcase, academy catalogue, services, design gallery and WhatsApp lead capture.",
+        "Includes a simple shop with mobile-money payment and a secure 48-hour download link after approval.",
+        "Built with Django 5 and Bootstrap 5; deployed on Render.",
     ]),
     ("KJ - Chat App (prototype)", [
         "A messaging app with online status, big file sharing, voice and video calls, customisable themes, a private 'vault mode' and a social feed.",
@@ -239,7 +276,8 @@ SELF_TAUGHT = [
     "Content creation and video editing (InShot and other tools)",
     "Church media and sound systems, plus livestreaming setups",
     "AI agents - how they are built and used (currently learning in depth)",
-    "Web and software development, learned largely by building real projects",
+    "Generative AI for media - text-to-video and image-to-video",
+    "Web, mobile and desktop development, learned largely by building real projects",
     "ICT training and teaching - passing skills on to students and colleagues",
 ]
 
@@ -312,14 +350,12 @@ def build_docx(path):
         s.left_margin = Inches(0.6)
         s.right_margin = Inches(0.6)
 
-    # Header table: photo + name block
     hdr = doc.add_table(rows=1, cols=2)
     hdr.autofit = False
     hdr.columns[0].width = Inches(1.35)
     hdr.columns[1].width = Inches(5.9)
     cell_photo = hdr.cell(0, 0)
     cell_info = hdr.cell(0, 1)
-    # remove default empty paragraph
     cell_photo.paragraphs[0].text = ""
     if os.path.exists(PHOTO):
         cell_photo.paragraphs[0].add_run().add_picture(PHOTO, width=Inches(1.25))
@@ -444,11 +480,11 @@ def build_pdf(path):
 
     story = []
 
-    # Header: photo + name
-    info = []
-    info.append(Paragraph(NAME, name_s))
-    info.append(Paragraph(TITLE, title_s))
-    info.append(Paragraph(" | ".join(CONTACT), contact_s))
+    info = [
+        Paragraph(NAME, name_s),
+        Paragraph(TITLE, title_s),
+        Paragraph(" | ".join(CONTACT), contact_s),
+    ]
     photo_cell = RLImage(PHOTO, width=32 * mm, height=41 * mm) if os.path.exists(PHOTO) else ""
     header_tbl = Table([[photo_cell, info]], colWidths=[36 * mm, 145 * mm])
     header_tbl.setStyle(TableStyle([

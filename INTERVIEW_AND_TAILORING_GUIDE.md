@@ -2,12 +2,12 @@
 
 Your files:
 - `CV_Mubogi_Jordan.docx` — **apply with this** (ATS-friendly, editable).
-- `CV_Mubogi_Jordan.pdf` — 3-page designed version for email/printing.
+- `CV_Mubogi_Jordan.pdf` — 4-page designed version for email/printing.
 - `photo_placeholder.jpg` — replace with your passport photo, then rebuild.
 - `CV_Master.md` — editable text version.
 - `build_cv.py` — regenerates the DOCX, PDF and Markdown: `python3 build_cv.py`
 
-The CV now has **3 pages** — enough room for your full scope: work history, 7 projects, leadership, self-taught skills, education and references.
+The CV now has **4 pages** — enough room for your full scope: full work history, 12 projects, leadership, self-taught skills, education and references.
 
 ---
 
@@ -26,7 +26,7 @@ If you'd rather not show a photo, just leave the placeholder — many internatio
 You have **range**: software, teaching, sales, credit, graphic design, media, leadership. That is rare and valuable. Employers like people who can talk to customers, teach, build, and lead.
 
 **One-line pitch:**
-> "I'm an ICT professional who builds software and also teaches, sells, designs and leads. I've shipped seven products on my own, and I've worked in teaching, sales and finance — so I understand the people who use the systems I build."
+> "I'm an ICT professional who builds software and also teaches, sells, designs and leads. I've shipped over a dozen products on my own, and I've worked in teaching, sales and finance — so I understand the people who use the systems I build."
 
 **On AI-assisted development (OpenHands):**
 > "I build with AI-assisted development — I use OpenHands. I do the thinking: find the problem, design the system, direct the build, test it, deploy it. I can explain every part and why it works that way. It lets me deliver a complete product on my own."
@@ -49,6 +49,13 @@ You have **range**: software, teaching, sales, credit, graphic design, media, le
 9. **A bug** — a mistake in the code; you find it by testing and fix it.
 10. **AI agent** — a program that uses an AI model to carry out tasks on its own; you're learning to build and use them.
 11. **Mobile money integration** — connecting to MTN MoMo / Airtel so customers pay directly (MyMarket.ug).
+12. **React / TypeScript** — React is a JavaScript library for building user interfaces; TypeScript is JavaScript with types (fewer mistakes). You used both in ClinicSync and JD Hub CBS.
+13. **GraphQL** — an API style where the client asks for exactly the data it needs. You used Apollo GraphQL in JD Hub CBS.
+14. **Prisma** — a tool that talks to the database from JavaScript/TypeScript safely. You used it in ClinicSync.
+15. **PouchDB / IndexedDB** — the browser's local database, used for offline-first so the app works with no internet.
+16. **Kotlin / Room** — Kotlin is the language for native Android apps; Room is Android's database library. You used both in Attendance Hub Android.
+17. **FEFO** — First-Expire-First-Out: selling the batch that expires soonest first. Used in ClinicSync pharmacy stock.
+18. **Circuit breaker (in the trading bot)** — an automatic stop that halts trading after a set loss, to protect the account.
 
 **If you don't know something:** "I haven't worked with that yet, but here's how I'd approach it…" Never bluff.
 
@@ -82,7 +89,7 @@ You have **range**: software, teaching, sales, credit, graphic design, media, le
 >
 > Dear Hiring Manager,
 >
-> I am applying for the **[Job Title]** role at **[Company]**. I am an ICT professional and product builder based in Kampala with a Bachelor of Science in Information Technology. I have taken **seven software products** from idea to working, deployed systems, and I have worked in teaching, sales, finance, graphic design and media.
+> I am applying for the **[Job Title]** role at **[Company]**. I am an ICT professional and product builder based in Kampala with a Bachelor of Science in Information Technology. I have taken **over a dozen software products** from idea to working, deployed systems, and I have worked in teaching, sales, finance, graphic design and media.
 >
 > I currently volunteer as an ICT Officer at **UCSCU**, building a SACCO apex platform — a SACCO registry with dues tracking, a Central Finance Facility inter-lending workflow, PEARLS reporting for regulators, and internal workplace tools. Earlier I founded **Jordan Design Hub**, where I built **MyMarket.ug** (a multi-vendor marketplace with real mobile-money payments) and **BizDocs** (an offline-first invoicing app for small businesses).
 >
