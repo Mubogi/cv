@@ -8,7 +8,7 @@ This repository holds my CV in three formats, plus the tooling to regenerate it.
 
 Get the latest files from the [**Releases**](../../releases) page:
 
-- **`CV_Mubogi_Jordan.pdf`** — designed 4-page CV (best for email and printing)
+- **`CV_Mubogi_Jordan.pdf`** — designed 2-page CV (best for email and printing)
 - **`CV_Mubogi_Jordan.docx`** — editable, ATS-friendly version
 - **`CV_Master.md`** — plain-text version
 
@@ -16,7 +16,7 @@ Get the latest files from the [**Releases**](../../releases) page:
 
 | File | Purpose |
 |------|---------|
-| `CV_Mubogi_Jordan.pdf` | Designed CV (4 pages, with photo) |
+| `CV_Mubogi_Jordan.pdf` | Designed CV (2 pages, with photo) |
 | `CV_Mubogi_Jordan.docx` | ATS-friendly editable version |
 | `CV_Master.md` | Plain-text master |
 | `photo_placeholder.jpg` | Replace with your passport photo |

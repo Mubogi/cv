@@ -1,7 +1,8 @@
 """Build the CV (DOCX + PDF + Markdown) from one content model.
 
-Honest, general-purpose CV written in simple English. It favours any role the
-applicant can do, not only ICT. Regenerate all outputs with: python3 build_cv.py
+Written in the tone of the applicant's original CV, with honest additions.
+Simple English. No "job I am looking for" section. Regenerate with:
+    python3 build_cv.py
 """
 import os
 from docx import Document
@@ -13,7 +14,7 @@ from docx.oxml import OxmlElement
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.colors import HexColor, white
+from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_LEFT
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, HRFlowable,
                                 Table, TableStyle, Image as RLImage, Spacer)
@@ -21,261 +22,148 @@ from reportlab.platypus import (SimpleDocTemplate, Paragraph, HRFlowable,
 HERE = os.path.dirname(os.path.abspath(__file__))
 PHOTO = os.path.join(HERE, "photo_placeholder.jpg")
 
-NAVY = "0B3D91"
-LIGHT = "CFE0FF"
-ACCENT = RGBColor(0x0B, 0x3D, 0x91)
-DARK = RGBColor(0x1A, 0x1A, 0x1A)
-GREY = RGBColor(0x55, 0x55, 0x55)
+# Muted, professional palette (deep slate blue + warm grey)
+NAVY = "1F3A5F"
+NAVY_RGB = RGBColor(0x1F, 0x3A, 0x5F)
+GREY = RGBColor(0x5A, 0x5A, 0x5A)
+DARK = RGBColor(0x22, 0x22, 0x22)
 
 # ----------------------------------------------------------------------------
-# Content model
+# Content
 # ----------------------------------------------------------------------------
 NAME = "MUBOGI GASTAVAS JORDAN"
-TITLE = "ICT & Computer Skills  ·  Teaching  ·  Sales & Customer Care  ·  Media & Design"
 
 CONTACT = [
     "Kampala, Uganda",
     "+256 754 687 597",
     "+256 768 593 543",
     "mubogigastavasjordan@gmail.com",
-    "github.com/Mubogi",
 ]
 
-SUMMARY = (
-    "I am an ICT professional from Kampala with a degree in Information Technology. "
-    "I have worked in teaching, sales, customer care, finance and media, and I also build "
-    "websites and simple apps. I learn new things quickly, I am honest and hardworking, and "
-    "I work well with people and under pressure. I am ready to do any job I am given and to "
-    "give it my best."
+PROFESSIONAL_SUMMARY = (
+    "Results-driven professional with expertise in leadership, education, technical "
+    "solutions, and strategic communication. Experienced in team coordination, event "
+    "planning, financial management, and digital branding. Proven ability to lead "
+    "initiatives, manage projects, and optimize operations across different sectors."
 )
 
-QUICK_FACTS = [
-    ("What I am looking for", "Any job I can do well - ICT, teaching, sales, customer care, media or office work"),
-    ("Availability", "Full-time or part-time; ready to start anytime; can work under pressure"),
-    ("Location", "Kampala, Uganda (ready to travel)"),
-    ("Currently", "Volunteering at UCSCU; studying a Certificate in Theology"),
-    ("Goal", "To keep learning and grow into a bigger role"),
-]
-
 SKILLS = [
-    ("ICT & Computer Skills",
-     "Using and setting up computers, Microsoft Office (Word, Excel, PowerPoint), internet and "
-     "email, fixing simple computer problems, teaching computer skills to others"),
-    ("Websites & Apps",
-     "I can build websites and simple apps using Python, Django, Flask, JavaScript, HTML, CSS, "
-     "Flutter and Node.js, with help from AI tools such as OpenHands. I understand how they work, "
-     "and I test and set them up myself."),
-    ("Design & Media",
-     "Graphic design (Canva), making posters and logos, editing videos, content creation, running "
-     "sound and media for church services and events, livestreaming"),
-    ("Sales & Customer Care",
-     "Direct sales, marketing, talking to customers, following up with clients, building good "
-     "relationships with people"),
-    ("Money & Records",
-     "Budgeting, keeping records, assessing loans, managing small funds, organising work"),
-    ("Leadership & People",
-     "Leading small teams, planning events, public speaking, teaching and mentoring others, "
-     "working with different kinds of people"),
+    ("Leadership & Project Management", "Initiative coordination, team mentorship, project planning."),
+    ("Technical & Digital Solutions",
+     "Web design, graphics design, IT training, computer support and troubleshooting, "
+     "Microsoft Office, building websites and simple apps with AI-assisted tools."),
+    ("Finance & Organizational Strategy",
+     "Budgeting, credit assessment, workflow optimization, record keeping."),
+    ("Communication & Marketing",
+     "Public speaking, digital branding, campaign strategies, customer care."),
+    ("Media & Creative",
+     "Graphic design (Canva), video editing, content creation, sound and media for church services and events."),
 ]
 
-EXPERIENCE = [
-    {
-        "role": "ICT Volunteer",
-        "org": "UCSCU - Uganda Cooperative Savings and Credit Union Limited",
-        "meta": "Kampala, Uganda  |  2026 - Present",
-        "bullets": [
-            "I help with everyday ICT work at the office.",
-            "I set up and take care of computers, printers and the internet.",
-            "I help staff when they have computer problems (troubleshooting).",
-            "I run errands to town and help with other office duties when needed.",
-            "I am learning how SACCOs work from the inside.",
-        ],
-    },
-    {
-        "role": "Founder & Product Builder",
-        "org": "Jordan Design Hub (JD Hub)",
-        "meta": "Kampala, Uganda  |  2025 - Present",
-        "bullets": [
-            "I started Jordan Design Hub, where I build websites, simple apps and design work for schools, churches, small businesses and SACCOs.",
-            "I listen to what the client needs, plan the work, build it (using AI tools such as OpenHands), test it and explain it back to them.",
-            "I have built several working systems. Some are now used by churches and schools.",
-            "I also design posters, logos and videos for clients.",
-            "I handle the money and planning for each project myself.",
-        ],
-    },
-    {
-        "role": "Team Lead - Media & Technical Operations",
-        "org": "Freelance / Church & Events",
-        "meta": "2024 - Present",
-        "bullets": [
-            "I lead a small team that runs sound, media and translation for services and events.",
-            "I set up and run the equipment and help with livestreaming.",
-        ],
-    },
-    {
-        "role": "Direct Sales Executive",
-        "org": "Airtel Uganda",
-        "meta": "2025",
-        "bullets": [
-            "I sold Airtel internet and WiFi packages and followed up with customers.",
-        ],
-    },
-    {
-        "role": "Code Instructor (Intern)",
-        "org": "Code Academy Uganda",
-        "meta": "2025",
-        "bullets": [
-            "I helped students with their coding projects and built their confidence.",
-        ],
-    },
-    {
-        "role": "Physics & Mathematics Teacher",
-        "org": "Destiny College International",
-        "meta": "2025",
-        "bullets": [
-            "I taught Physics and Mathematics and helped students improve their performance.",
-        ],
-    },
-    {
-        "role": "Credit Officer",
-        "org": "Credit Watch Services International",
-        "meta": "2025",
-        "bullets": [
-            "I checked clients' finances and gave them simple financial advice.",
-        ],
-    },
-    {
-        "role": "ICT Teacher",
-        "org": "Semuto Senior Secondary School",
-        "meta": "2024 - 2025",
-        "bullets": [
-            "I taught computer skills and helped students learn practical ICT.",
-        ],
-    },
-    {
-        "role": "Marketer",
-        "org": "Apex International University",
-        "meta": "2023 - 2024",
-        "bullets": [
-            "I did marketing that increased student interest and enrolment.",
-        ],
-    },
-    {
-        "role": "Graphics Designer",
-        "org": "Magix Graphics",
-        "meta": "2022 - 2023",
-        "bullets": [
-            "I designed posters and other materials for clients.",
-        ],
-    },
-    {
-        "role": "Sales Promoter",
-        "org": "Jajopa International Limited",
-        "meta": "2019 - 2021",
-        "bullets": [
-            "I carried out awareness campaigns and distributed products.",
-        ],
-    },
+WORK_EXPERIENCE = [
+    ("ICT Volunteer", "UCSCU - Uganda Cooperative Savings and Credit Union Limited", "2026 - Present",
+     "Provide day-to-day ICT support, set up and maintain computers, printers and internet, help staff with "
+     "computer problems, and assist with other office duties."),
+    ("Direct Sales Executive", "Airtel Uganda", "2025",
+     "Marketing airtel Internet or wifi."),
+    ("Code Instructor (Intern)", "Code Academy Uganda", "2025",
+     "Helped students in accomplishing their code projects in the Code Camp."),
+    ("Physics & Mathematics Teacher", "Destiny College International", "2025",
+     "Delivered comprehensive STEM education, enhancing student performance."),
+    ("Credit Officer", "Credit Watch Services International", "Previous Role, 2025",
+     "Managed client financial assessments, providing structured financial guidance."),
+    ("ICT Teacher", "Semuto Senior Secondary School", "Previous Role, 2024 - 2025",
+     "Designed and implemented effective digital learning strategies."),
+    ("Marketer", "Apex International University", "2023 - 2024",
+     "Executed marketing strategies improving student engagement."),
+    ("Graphics Designer", "Magix Graphics", "2022 - 2023",
+     "Developed promotional materials to enhance brand visibility."),
+    ("Sales Promoter", "Jajopa International Limited", "2019 - 2021",
+     "Conducted awareness campaigns and product distribution."),
 ]
 
-# Honest project list: what is in use, what is still being built.
-PROJECTS = [
-    ("Attendance Hub - Church & Event Attendance (in use)", [
-        "A system that records who attends church services and events, keeps member details and prints reports.",
-        "It is running on a computer, and I also made an Android app version.",
-    ]),
-    ("School Management System (in use)", [
-        "Helps a school manage students, teachers, fees, marks and reports. It works without internet.",
-        "It is installed and used by a school.",
-    ]),
-    ("Savings Bank SACCO App (in use)", [
-        "A simple savings and credit app for SACCO members, made with Flutter.",
-    ]),
-    ("Church Media & Sound (ongoing)", [
-        "I run sound, media and livestreaming for church services and events, and train others to do it.",
-    ]),
-    ("ClinicSync - Clinic & Pharmacy System (in development)", [
-        "A system for clinics and drug shops: sales, stock with expiry dates, daily expenses and end-of-day cash.",
-        "It is still being built and tested, not yet in use.",
-    ]),
-    ("UCSCU Connect (in development)", [
-        "A system being built to help UCSCU with its work. It is still in development and not yet in use.",
-    ]),
-    ("JD Hub CBS - SACCO Banking System (prototype)", [
-        "A banking-style system for SACCOs, built as a prototype to learn how core banking works.",
-    ]),
-    ("MyMarket.ug - Online Market (in development)", [
-        "An online market where vendors can show their goods and customers can pay by mobile money. Still being finished.",
-    ]),
-    ("BizDocs - Invoices for Small Businesses (in development)", [
-        "An app for making invoices, receipts and quotations for small businesses. Still being built.",
-    ]),
-    ("Kids AI Studio (prototype)", [
-        "A fun project that turns one sentence into a short children's video or song using AI.",
-    ]),
-    ("MT5 Trading Bot (prototype)", [
-        "A practice bot I built to learn about trading, money and risk.",
-    ]),
-    ("KJ Chat App (prototype)", [
-        "A chat app I built to learn how messaging apps work.",
-    ]),
-    ("JD Hub Website (in development)", [
-        "The website for my business, Jordan Design Hub.",
-    ]),
-]
-
-LEADERSHIP = [
-    ("Founder & Chairperson - Apex Christian Union", "2023 - 2025",
-     "I started the Christian Union at my university and led it, organising outreaches and events."),
-    ("GRC - IT Faculty, Apex International University", "2023 - 2024",
-     "I represented students and helped with faculty activities."),
+ADDITIONAL_ROLES = [
     ("Team Lead - Media & Technical Operations", "2024 - Present",
-     "I lead the media and sound team at church."),
+     "Oversaw translation services, sound systems, and media production. Managed technical setups for "
+     "communication and public engagement."),
+    ("Founder & Chairperson - Apex Christian Union", "2023 - 2025",
+     "Established a Christian Union fostering spiritual growth, collaboration and mentorship among students. "
+     "Organized large-scale events like outreaches to enhance spiritual and educational engagement."),
+    ("GRC - IT Faculty, Apex International University", "2023 - 2024",
+     "Represented student interests and facilitated IT faculty initiatives. Advocated for student needs and "
+     "strengthened academic collaboration."),
+]
+
+# Honest project list, in the same plain tone
+PROJECTS = [
+    ("Attendance Hub - Church & Event Attendance (in use)",
+     "Records church and event attendance, keeps member details and prints reports. Running on a computer, with an Android app version."),
+    ("School Management System (in use)",
+     "Helps a school manage students, teachers, fees, marks and reports, and works without internet."),
+    ("Savings Bank SACCO App (in use)",
+     "A simple savings and credit app for SACCO members, made with Flutter."),
+    ("Church Media & Sound (ongoing)",
+     "Running sound, media and livestreaming for church services and events, and training others to do it."),
+    ("ClinicSync - Clinic & Pharmacy System (in development)",
+     "A system for clinics and drug shops covering sales, stock with expiry dates, daily expenses and end-of-day cash. Still being built and tested."),
+    ("UCSCU Connect (in development)",
+     "A system being built to help UCSCU with its work. Still in development."),
+    ("JD Hub CBS - SACCO Banking System (prototype)",
+     "A banking-style system for SACCOs, built as a prototype to learn how core banking works."),
+    ("MyMarket.ug - Online Market (in development)",
+     "An online market where vendors can show their goods and customers can pay by mobile money. Still being finished."),
+    ("BizDocs - Invoices for Small Businesses (in development)",
+     "An app for making invoices, receipts and quotations for small businesses. Still being built."),
+    ("Kids AI Studio (prototype)",
+     "Turns one sentence into a short children's video or song using AI."),
+    ("MT5 Trading Bot (prototype)",
+     "A practice bot built to learn about trading, money and risk."),
+    ("KJ Chat App (prototype)",
+     "A chat app built to learn how messaging apps work."),
+    ("JD Hub Website (in development)",
+     "The website for Jordan Design Hub."),
 ]
 
 EDUCATION = [
-    ("Bachelor of Science in Information Technology",
-     "Apex International University  |  Graduated 2026"),
-    ("Certificate in Theology", "In progress  |  Currently studying"),
-    ("Uganda Advanced Certificate of Education (UACE)", "Mbale Secondary School  |  2019 - 2020"),
-    ("Uganda Certificate of Education (UCE)", "Lugazi Homestone Boarding School  |  2015 - 2018"),
-    ("Primary Leaving Examination (PLE)", "Namakwekwe Primary School  |  2008 - 2014"),
+    ("Apex International University",
+     "Bachelor's Degree in Information Technology - Graduated 2026"),
+    ("Certificate in Theology", "In progress"),
+    ("Mbale Secondary School", "Uganda Advanced Certificate of Education (2019 - 2020)"),
+    ("Lugazi Homestone Boarding School", "Uganda Certificate of Education (2015 - 2018)"),
+    ("Namakwekwe Primary School", "Primary Leaving Examination (2008 - 2014)"),
 ]
 
 SELF_TAUGHT = [
-    "Graphic design with Canva - posters, logos and branding",
-    "Video editing and content creation",
-    "Church media, sound systems and livestreaming",
-    "AI tools (OpenHands) and how to build and use AI agents",
-    "Building websites and simple apps by working on real projects",
-    "Teaching and helping other people learn computer skills",
+    "Graphic design with Canva - posters, logos and branding.",
+    "Video editing and content creation.",
+    "Church media, sound systems and livestreaming.",
+    "AI tools (OpenHands) and how to build and use AI agents.",
+    "Building websites and simple apps by working on real projects.",
+    "Teaching and helping others learn computer skills.",
 ]
 
 LANGUAGES = [
-    "English - excellent (speaking, reading, writing)",
-    "Luganda - very good (reading); good (speaking, writing)",
-    "Lumasaba - excellent (speaking); very good (reading); good (writing)",
+    "English: Excellent (Speaking, Reading, Writing)",
+    "Luganda: Very Good (Reading), Good (Speaking, Writing)",
+    "Lumasaba: Excellent (Speaking), Very Good (Reading), Good (Writing)",
 ]
 
 REFERENCES = [
-    "Nangede Jacqueline - Director, Jajopa International Limited - 0781 934 093",
-    "Emmanuel Buyi - Wallace Engineering Services - 0753 190 857",
-    "Mr. Nsereko Elisha - Dean of Students, Apex International University - +256 760 749 685",
+    ("Nangede Jacqueline", "Director, Jajopa International Limited", "0781 934 093"),
+    ("Emmanuel Buyi", "Wallace Engineering Services", "0753 190 857"),
+    ("Mr. Nsereko Elisha", "Dean of Students, Apex International University", "+256 760 749 685"),
 ]
 
 # ----------------------------------------------------------------------------
 # DOCX helpers
 # ----------------------------------------------------------------------------
-def shade(element, hexcolor):
-    pPr = element._p.get_or_add_pPr() if hasattr(element, '_p') else element._tc.get_or_add_tcPr()
+def shade_para(paragraph, hexcolor):
+    pPr = paragraph._p.get_or_add_pPr()
     shd = OxmlElement('w:shd')
     shd.set(qn('w:val'), 'clear')
     shd.set(qn('w:color'), 'auto')
     shd.set(qn('w:fill'), hexcolor)
-    if hasattr(element, '_p'):
-        pPr.append(shd)
-    else:
-        pPr.append(shd)
+    pPr.append(shd)
 
 def shade_cell(cell, hexcolor):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -285,19 +173,10 @@ def shade_cell(cell, hexcolor):
     shd.set(qn('w:fill'), hexcolor)
     tcPr.append(shd)
 
-def shade_para(paragraph, hexcolor):
-    pPr = paragraph._p.get_or_add_pPr()
-    shd = OxmlElement('w:shd')
-    shd.set(qn('w:val'), 'clear')
-    shd.set(qn('w:color'), 'auto')
-    shd.set(qn('w:fill'), hexcolor)
-    pPr.append(shd)
-
 def heading(doc, text):
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(10)
     p.paragraph_format.space_after = Pt(4)
-    p.paragraph_format.left_indent = Pt(0)
     shade_para(p, NAVY)
     r = p.add_run("  " + text.upper())
     r.bold = True
@@ -320,99 +199,98 @@ def build_docx(path):
     style.font.size = Pt(10.5)
 
     for s in doc.sections:
-        s.top_margin = Inches(0.45)
-        s.bottom_margin = Inches(0.45)
-        s.left_margin = Inches(0.55)
-        s.right_margin = Inches(0.55)
+        s.top_margin = Inches(0.5)
+        s.bottom_margin = Inches(0.5)
+        s.left_margin = Inches(0.6)
+        s.right_margin = Inches(0.6)
 
-    # Header banner (navy) with photo + name
+    # Header: photo + name/contact, subtle grey rule under
     hdr = doc.add_table(rows=1, cols=2)
     hdr.autofit = False
     hdr.columns[0].width = Inches(1.4)
     hdr.columns[1].width = Inches(5.9)
-    cell_photo = hdr.cell(0, 0)
-    cell_info = hdr.cell(0, 1)
-    shade_cell(cell_photo, NAVY)
-    shade_cell(cell_info, NAVY)
-
+    cell_photo, cell_info = hdr.cell(0, 0), hdr.cell(0, 1)
     cell_photo.paragraphs[0].text = ""
     cell_photo.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     if os.path.exists(PHOTO):
         cell_photo.paragraphs[0].add_run().add_picture(PHOTO, width=Inches(1.2))
 
     p = cell_info.paragraphs[0]
-    p.paragraph_format.space_after = Pt(0)
+    p.paragraph_format.space_after = Pt(2)
     r = p.add_run(NAME)
     r.bold = True
-    r.font.size = Pt(19)
-    r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
-    p = cell_info.add_paragraph()
-    p.paragraph_format.space_after = Pt(2)
-    r = p.add_run(TITLE)
-    r.font.size = Pt(9.5)
-    r.font.color.rgb = RGBColor(0xCF, 0xE0, 0xFF)
+    r.font.size = Pt(20)
+    r.font.color.rgb = NAVY_RGB
     p = cell_info.add_paragraph()
     p.paragraph_format.space_after = Pt(0)
-    r = p.add_run(" | ".join(CONTACT))
-    r.font.size = Pt(8.5)
-    r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+    r = p.add_run(" · ".join(CONTACT))
+    r.font.size = Pt(9)
+    r.font.color.rgb = GREY
 
-    heading(doc, "About Me")
-    p = doc.add_paragraph(SUMMARY)
+    rule = doc.add_paragraph()
+    rule.paragraph_format.space_before = Pt(2)
+    rule.paragraph_format.space_after = Pt(6)
+    pPr = rule._p.get_or_add_pPr()
+    pbdr = OxmlElement('w:pBdr')
+    bottom = OxmlElement('w:bottom')
+    bottom.set(qn('w:val'), 'single')
+    bottom.set(qn('w:sz'), '12')
+    bottom.set(qn('w:space'), '1')
+    bottom.set(qn('w:color'), NAVY)
+    pbdr.append(bottom)
+    pPr.append(pbdr)
+
+    heading(doc, "Professional Summary")
+    p = doc.add_paragraph(PROFESSIONAL_SUMMARY)
     p.paragraph_format.space_after = Pt(4)
 
-    heading(doc, "Quick Facts")
-    for label, val in QUICK_FACTS:
-        bullet(doc, val, bold_lead=f"{label}: ")
-
-    heading(doc, "Skills")
-    for label, val in SKILLS:
-        bullet(doc, val, bold_lead=f"{label}: ")
-
     heading(doc, "Work Experience")
-    for job in EXPERIENCE:
+    for role, org, when, desc in WORK_EXPERIENCE:
         p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(6)
+        p.paragraph_format.space_before = Pt(5)
         p.paragraph_format.space_after = Pt(0)
-        r = p.add_run(f"{job['role']} - {job['org']}")
+        r = p.add_run(f"{role} - {org}")
         r.bold = True
         r.font.size = Pt(10.5)
-        r.font.color.rgb = ACCENT
+        r.font.color.rgb = NAVY_RGB
         p = doc.add_paragraph()
-        p.paragraph_format.space_after = Pt(2)
-        r = p.add_run(job['meta'])
+        p.paragraph_format.space_after = Pt(1)
+        r = p.add_run(when)
         r.italic = True
         r.font.size = Pt(9)
         r.font.color.rgb = GREY
-        for b in job['bullets']:
-            bullet(doc, b)
+        p = doc.add_paragraph(desc)
+        p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.left_indent = Pt(6)
+
+    heading(doc, "Skills & Proficiencies")
+    for label, val in SKILLS:
+        bullet(doc, val, bold_lead=f"{label}: ")
 
     heading(doc, "Projects & Practical Work")
-    for title, bullets in PROJECTS:
-        p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(4)
-        p.paragraph_format.space_after = Pt(1)
-        r = p.add_run(title)
-        r.bold = True
-        r.font.size = Pt(10.5)
-        for b in bullets:
-            bullet(doc, b)
-
-    heading(doc, "Leadership & Volunteer Roles")
-    for role, when, desc in LEADERSHIP:
+    for title, desc in PROJECTS:
         p = doc.add_paragraph(style='List Bullet')
         p.paragraph_format.space_after = Pt(2)
-        r = p.add_run(f"{role} ({when}): ")
+        r = p.add_run(f"{title}: ")
         r.bold = True
         p.add_run(desc)
 
-    heading(doc, "Education & Training")
-    for award, detail in EDUCATION:
-        p = doc.add_paragraph(style='List Bullet')
-        p.paragraph_format.space_after = Pt(2)
-        r = p.add_run(f"{award} - ")
+    heading(doc, "Additional Roles")
+    for role, when, desc in ADDITIONAL_ROLES:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(0)
+        r = p.add_run(f"{role} ({when})")
         r.bold = True
-        p.add_run(detail)
+        r.font.size = Pt(10.5)
+        r.font.color.rgb = NAVY_RGB
+        p = doc.add_paragraph(desc)
+        p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.left_indent = Pt(6)
+
+    heading(doc, "Education")
+    for place, detail in EDUCATION:
+        bullet(doc, detail, bold_lead=f"{place}: ")
 
     heading(doc, "What I Have Learned On My Own")
     for s in SELF_TAUGHT:
@@ -423,8 +301,11 @@ def build_docx(path):
         bullet(doc, lang)
 
     heading(doc, "References")
-    for ref in REFERENCES:
-        bullet(doc, ref)
+    for name, title, phone in REFERENCES:
+        p = doc.add_paragraph(style='List Bullet')
+        p.paragraph_format.space_after = Pt(2)
+        r = p.add_run(f"{name} - {title} - ")
+        p.add_run(phone)
 
     doc.save(path)
     return path
@@ -434,46 +315,39 @@ def build_docx(path):
 # ----------------------------------------------------------------------------
 def build_pdf(path):
     styles = getSampleStyleSheet()
-    navy = HexColor("#0B3D91")
-    grey = HexColor("#555555")
+    navy = HexColor("#" + NAVY)
+    grey = HexColor("#5A5A5A")
 
     name_s = ParagraphStyle('name', parent=styles['Normal'], fontName='Helvetica-Bold',
-                            fontSize=19, textColor=white, leading=22, spaceAfter=2)
-    title_s = ParagraphStyle('title', parent=styles['Normal'], fontName='Helvetica',
-                             fontSize=9.5, textColor=HexColor("#CFE0FF"), alignment=TA_LEFT, spaceAfter=3)
+                            fontSize=21, textColor=navy, leading=24, spaceAfter=3)
     contact_s = ParagraphStyle('contact', parent=styles['Normal'], fontName='Helvetica',
-                               fontSize=8.5, textColor=white, spaceAfter=0)
+                               fontSize=9, textColor=grey, spaceAfter=0)
     h_s = ParagraphStyle('h', parent=styles['Normal'], fontName='Helvetica-Bold',
-                         fontSize=10.2, textColor=white, spaceBefore=9, spaceAfter=4,
-                         backColor=navy, borderPadding=(4, 4, 4, 4), leftIndent=0)
+                         fontSize=10.2, textColor=HexColor("#FFFFFF"), spaceBefore=7, spaceAfter=3,
+                         backColor=navy, borderPadding=(3, 3, 3, 3))
     body = ParagraphStyle('body', parent=styles['Normal'], fontName='Helvetica',
-                          fontSize=9.5, leading=12.6, spaceAfter=2, alignment=TA_LEFT)
-    bullet_s = ParagraphStyle('bul', parent=body, leftIndent=12, bulletIndent=2, spaceAfter=1.8)
+                          fontSize=9.6, leading=12.4, spaceAfter=2, alignment=TA_LEFT)
+    bullet_s = ParagraphStyle('bul', parent=body, leftIndent=12, bulletIndent=2, spaceAfter=1.6)
     role_s = ParagraphStyle('role', parent=styles['Normal'], fontName='Helvetica-Bold',
-                            fontSize=10.2, textColor=navy, spaceBefore=5, spaceAfter=0)
+                            fontSize=10.3, textColor=navy, spaceBefore=4, spaceAfter=0)
     meta_s = ParagraphStyle('meta', parent=styles['Normal'], fontName='Helvetica-Oblique',
-                            fontSize=8.8, textColor=grey, spaceAfter=1)
+                            fontSize=9, textColor=grey, spaceAfter=2)
+    desc_s = ParagraphStyle('desc', parent=body, leftIndent=6, spaceAfter=2)
 
     story = []
 
-    info = [
-        Paragraph(NAME, name_s),
-        Paragraph(TITLE, title_s),
-        Paragraph(" | ".join(CONTACT), contact_s),
-    ]
+    info = [Paragraph(NAME, name_s), Paragraph(" · ".join(CONTACT), contact_s)]
     photo_cell = RLImage(PHOTO, width=30 * mm, height=38.5 * mm) if os.path.exists(PHOTO) else ""
     header_tbl = Table([[photo_cell, info]], colWidths=[36 * mm, 145 * mm])
     header_tbl.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, -1), navy),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('LEFTPADDING', (0, 0), (0, 0), 8),
-        ('LEFTPADDING', (1, 0), (1, 0), 6),
-        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
-        ('TOPPADDING', (0, 0), (-1, -1), 8),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+        ('LEFTPADDING', (0, 0), (-1, -1), 0),
+        ('RIGHTPADDING', (0, 0), (0, 0), 6),
+        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
     ]))
     story.append(header_tbl)
-    story.append(Spacer(1, 4))
+    story.append(HRFlowable(width="100%", thickness=1.4, color=navy, spaceBefore=4, spaceAfter=2))
 
     def h(text):
         story.append(Paragraph(text.upper(), h_s))
@@ -481,37 +355,31 @@ def build_pdf(path):
     def ul(text):
         story.append(Paragraph(text, bullet_s, bulletText='\u2022'))
 
-    h("About Me")
-    story.append(Paragraph(SUMMARY, body))
+    h("Professional Summary")
+    story.append(Paragraph(PROFESSIONAL_SUMMARY, body))
 
-    h("Quick Facts")
-    for label, val in QUICK_FACTS:
-        story.append(Paragraph(f"<b>{label}:</b> {val}", bullet_s, bulletText='\u2022'))
+    h("Work Experience")
+    for role, org, when, desc in WORK_EXPERIENCE:
+        story.append(Paragraph(f"{role} - {org}", role_s))
+        story.append(Paragraph(when, meta_s))
+        story.append(Paragraph(desc, desc_s))
 
-    h("Skills")
+    h("Skills & Proficiencies")
     for label, val in SKILLS:
         story.append(Paragraph(f"<b>{label}:</b> {val}", bullet_s, bulletText='\u2022'))
 
-    h("Work Experience")
-    for job in EXPERIENCE:
-        story.append(Paragraph(f"{job['role']} - {job['org']}", role_s))
-        story.append(Paragraph(job['meta'], meta_s))
-        for b in job['bullets']:
-            ul(b)
-
     h("Projects & Practical Work")
-    for title, bullets in PROJECTS:
-        story.append(Paragraph(title, role_s))
-        for b in bullets:
-            ul(b)
+    for title, desc in PROJECTS:
+        story.append(Paragraph(f"<b>{title}:</b> {desc}", bullet_s, bulletText='\u2022'))
 
-    h("Leadership & Volunteer Roles")
-    for role, when, desc in LEADERSHIP:
-        story.append(Paragraph(f"<b>{role}</b> ({when}): {desc}", bullet_s, bulletText='\u2022'))
+    h("Additional Roles")
+    for role, when, desc in ADDITIONAL_ROLES:
+        story.append(Paragraph(f"{role} ({when})", role_s))
+        story.append(Paragraph(desc, desc_s))
 
-    h("Education & Training")
-    for award, detail in EDUCATION:
-        story.append(Paragraph(f"<b>{award}</b> - {detail}", bullet_s, bulletText='\u2022'))
+    h("Education")
+    for place, detail in EDUCATION:
+        story.append(Paragraph(f"<b>{place}:</b> {detail}", bullet_s, bulletText='\u2022'))
 
     h("What I Have Learned On My Own")
     for s in SELF_TAUGHT:
@@ -522,8 +390,8 @@ def build_pdf(path):
         ul(lang)
 
     h("References")
-    for ref in REFERENCES:
-        ul(ref)
+    for name, title, phone in REFERENCES:
+        story.append(Paragraph(f"<b>{name}</b> - {title} - {phone}", bullet_s, bulletText='\u2022'))
 
     doc = SimpleDocTemplate(path, pagesize=A4,
                             leftMargin=14 * mm, rightMargin=14 * mm,
@@ -536,33 +404,27 @@ def build_pdf(path):
 # Markdown
 # ----------------------------------------------------------------------------
 def build_md(path):
-    L = [f"# {NAME}", f"**{TITLE}**", "", " · ".join(CONTACT), "",
+    L = [f"# {NAME}", "", " · ".join(CONTACT), "",
          "> Photo: replace `photo_placeholder.jpg` with your passport photo, then rebuild.", ""]
-    L += ["## About Me", SUMMARY, ""]
-    L += ["## Quick Facts"]
-    L += [f"- **{label}:** {val}" for label, val in QUICK_FACTS]
-    L += ["", "## Skills"]
+    L += ["## Professional Summary", PROFESSIONAL_SUMMARY, ""]
+    L += ["## Work Experience"]
+    for role, org, when, desc in WORK_EXPERIENCE:
+        L += [f"### {role} - {org}", f"*{when}*", "", desc, ""]
+    L += ["## Skills & Proficiencies"]
     L += [f"- **{label}:** {val}" for label, val in SKILLS]
-    L += ["", "## Work Experience"]
-    for job in EXPERIENCE:
-        L += [f"### {job['role']} — {job['org']}", f"*{job['meta']}*", ""]
-        L += [f"- {b}" for b in job['bullets']]
-        L += [""]
-    L += ["## Projects & Practical Work"]
-    for title, bullets in PROJECTS:
-        L += [f"### {title}"]
-        L += [f"- {b}" for b in bullets]
-        L += [""]
-    L += ["## Leadership & Volunteer Roles"]
-    L += [f"- **{role}** ({when}): {desc}" for role, when, desc in LEADERSHIP]
-    L += ["", "## Education & Training"]
-    L += [f"- **{award}** - {detail}" for award, detail in EDUCATION]
+    L += ["", "## Projects & Practical Work"]
+    L += [f"- **{title}:** {desc}" for title, desc in PROJECTS]
+    L += ["", "## Additional Roles"]
+    for role, when, desc in ADDITIONAL_ROLES:
+        L += [f"### {role} ({when})", desc, ""]
+    L += ["## Education"]
+    L += [f"- **{place}:** {detail}" for place, detail in EDUCATION]
     L += ["", "## What I Have Learned On My Own"]
     L += [f"- {s}" for s in SELF_TAUGHT]
     L += ["", "## Languages"]
     L += [f"- {lang}" for lang in LANGUAGES]
     L += ["", "## References"]
-    L += [f"- {ref}" for ref in REFERENCES]
+    L += [f"- **{name}** - {title} - {phone}" for name, title, phone in REFERENCES]
     L += [""]
     with open(path, "w") as f:
         f.write("\n".join(L))

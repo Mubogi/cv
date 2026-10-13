@@ -1,13 +1,13 @@
 # Your CV — How to Use It, and How to Talk About Your Work
 
 Your files:
-- `CV_Mubogi_Jordan.pdf` — designed CV (3 pages, with photo).
+- `CV_Mubogi_Jordan.pdf` — designed CV (2 pages, with photo).
 - `CV_Mubogi_Jordan.docx` — editable version to apply with.
 - `photo_placeholder.jpg` — replace with your passport photo, then rebuild.
 - `CV_Master.md` — plain text version.
 - `build_cv.py` — rebuilds all three: `python3 build_cv.py`
 
-This CV is written in simple English and is **general**, so it fits many jobs — not only ICT. It is also **honest**: it says what you really do.
+This CV is written in simple English, in the same tone as your original CV, and is **general**, so it fits many jobs — not only ICT. It is also **honest**: it says what you really do. There is **no "job I am looking for" section** — employers see your ability, not your wish list.
 
 ---
 
