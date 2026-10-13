@@ -1,7 +1,7 @@
-"""Build the master CV (DOCX + PDF + Markdown) from one content model.
+"""Build the CV (DOCX + PDF + Markdown) from one content model.
 
-Three-page, well-designed CV with a photo placeholder, aimed at being sendable
-anywhere. Regenerate all outputs with:  python3 build_cv.py
+Honest, general-purpose CV written in simple English. It favours any role the
+applicant can do, not only ICT. Regenerate all outputs with: python3 build_cv.py
 """
 import os
 from docx import Document
@@ -13,14 +13,16 @@ from docx.oxml import OxmlElement
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.colors import HexColor
+from reportlab.lib.colors import HexColor, white
 from reportlab.lib.enums import TA_LEFT
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, HRFlowable,
-                                Table, TableStyle, Image as RLImage)
+                                Table, TableStyle, Image as RLImage, Spacer)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PHOTO = os.path.join(HERE, "photo_placeholder.jpg")
 
+NAVY = "0B3D91"
+LIGHT = "CFE0FF"
 ACCENT = RGBColor(0x0B, 0x3D, 0x91)
 DARK = RGBColor(0x1A, 0x1A, 0x1A)
 GREY = RGBColor(0x55, 0x55, 0x55)
@@ -29,7 +31,7 @@ GREY = RGBColor(0x55, 0x55, 0x55)
 # Content model
 # ----------------------------------------------------------------------------
 NAME = "MUBOGI GASTAVAS JORDAN"
-TITLE = "ICT Professional  |  Full-Stack Developer  |  Educator, Leader & Creative"
+TITLE = "ICT & Computer Skills  ·  Teaching  ·  Sales & Customer Care  ·  Media & Design"
 
 CONTACT = [
     "Kampala, Uganda",
@@ -40,53 +42,40 @@ CONTACT = [
 ]
 
 SUMMARY = (
-    "Results-driven ICT professional with a Bachelor of Science in Information Technology and "
-    "wide experience across software development, teaching, sales, finance, media and leadership. "
-    "I have designed, built and shipped over a dozen working software products for Ugandan "
-    "schools, SACCOs, clinics, SMEs and churches - including live marketplaces, banking and "
-    "clinic systems, mobile apps and a generative-AI kids' studio. I am a self-taught "
-    "multi-skilled creator: graphic design, content creation, video editing, church media and ICT "
-    "training. I lead teams, plan events, manage money carefully, and I am equally comfortable in "
-    "front of a class, a client or a camera. I am open to any role - part-time or full-time - and "
-    "I work well under pressure."
+    "I am an ICT professional from Kampala with a degree in Information Technology. "
+    "I have worked in teaching, sales, customer care, finance and media, and I also build "
+    "websites and simple apps. I learn new things quickly, I am honest and hardworking, and "
+    "I work well with people and under pressure. I am ready to do any job I am given and to "
+    "give it my best."
 )
 
-PROFILE = [
-    ("Role I want", "Any lucrative ICT, software, teaching, sales, media or administrative role"),
-    ("Availability", "Full-time or part-time; short-term contracts welcome; works well under pressure"),
-    ("Location", "Kampala, Uganda (open to remote and travel)"),
-    ("Currently", "ICT Volunteer at UCSCU; studying a Certificate in Theology; learning AI agents"),
-    ("Next goal", "Enrolling for a Master's in IT / Software Engineering"),
+QUICK_FACTS = [
+    ("What I am looking for", "Any job I can do well - ICT, teaching, sales, customer care, media or office work"),
+    ("Availability", "Full-time or part-time; ready to start anytime; can work under pressure"),
+    ("Location", "Kampala, Uganda (ready to travel)"),
+    ("Currently", "Volunteering at UCSCU; studying a Certificate in Theology"),
+    ("Goal", "To keep learning and grow into a bigger role"),
 ]
 
 SKILLS = [
-    ("Software & Web Development",
-     "Python, Django 5, Flask, SQLAlchemy, JavaScript, TypeScript, React 18, Node.js, Express, "
-     "Socket.IO, GraphQL/Apollo, SQL (SQLite & PostgreSQL), REST APIs, HTML5, CSS3, Bootstrap 5, "
-     "Tailwind CSS, Alpine.js, MUI, Jinja2, PWA"),
-    ("Mobile & Desktop",
-     "Flutter (Dart), Kotlin (native Android, Room), Capacitor, PyInstaller (Windows EXE), "
-     "offline-first sync (PouchDB / IndexedDB), LAN device linking"),
-    ("AI & Automation",
-     "AI-assisted development with OpenHands, learning to design and build AI agents, prompt "
-     "engineering, open-source generative AI (text-to-video, image-to-video), ML basics "
-     "(scikit-learn), automating content and document generation (ReportLab PDFs)"),
-    ("Data & Backend Systems",
-     "Database design, Prisma, migrations, authentication, role-based access control, audit "
-     "logging, webhooks, mobile-money payments (Flutterwave / MTN MoMo / Airtel)"),
-    ("Creative & Media",
-     "Graphic design (Canva, InShot), content creation, video editing, church media and sound "
-     "systems, livestreaming (OBS / OpenLP), branding and promotional materials"),
-    ("IT & Technical Support",
-     "ICT training and teaching, computer literacy, web design, networking basics, software "
-     "installation, troubleshooting, Git & GitHub, GitHub Actions, cloud deployment (Render), "
-     "Linux command line"),
-    ("Finance & Organisational Strategy",
-     "Budgeting, credit assessment, financial management, workflow optimisation, record keeping, "
-     "project planning"),
-    ("Leadership & Communication",
-     "Team mentorship, initiative coordination, event planning, public speaking, client relations, "
-     "translation services, digital branding and campaign strategies"),
+    ("ICT & Computer Skills",
+     "Using and setting up computers, Microsoft Office (Word, Excel, PowerPoint), internet and "
+     "email, fixing simple computer problems, teaching computer skills to others"),
+    ("Websites & Apps",
+     "I can build websites and simple apps using Python, Django, Flask, JavaScript, HTML, CSS, "
+     "Flutter and Node.js, with help from AI tools such as OpenHands. I understand how they work, "
+     "and I test and set them up myself."),
+    ("Design & Media",
+     "Graphic design (Canva), making posters and logos, editing videos, content creation, running "
+     "sound and media for church services and events, livestreaming"),
+    ("Sales & Customer Care",
+     "Direct sales, marketing, talking to customers, following up with clients, building good "
+     "relationships with people"),
+    ("Money & Records",
+     "Budgeting, keeping records, assessing loans, managing small funds, organising work"),
+    ("Leadership & People",
+     "Leading small teams, planning events, public speaking, teaching and mentoring others, "
+     "working with different kinds of people"),
 ]
 
 EXPERIENCE = [
@@ -95,12 +84,11 @@ EXPERIENCE = [
         "org": "UCSCU - Uganda Cooperative Savings and Credit Union Limited",
         "meta": "Kampala, Uganda  |  2026 - Present",
         "bullets": [
-            "Building UCSCU Connect, a SACCO apex platform and internal workplace hub, to move apex operations off spreadsheets and paper.",
-            "Worked on the SACCO registry with dues tracking, a Central Finance Facility (CFF) inter-lending workflow, and sector KPI dashboards.",
-            "Helped add PEARLS quarterly reporting (WOCCU ratios) with CSV exports for regulators such as UMRA and the Bank of Uganda.",
-            "Contributed to the training catalogue, events and certification, insurance (CIC Africa) claims, stationery shop, announcements, and governance tools (meetings, e-voting), plus a full admin audit log.",
-            "Helped build workplace tools: office attendance on the local network, a visitors register, a staff discussion hub, a whistleblowing channel, document space and a shared calendar.",
-            "Set up role-based access so admin, staff, board, SACCO and regulator users each see only what they should.",
+            "I help with everyday ICT work at the office.",
+            "I set up and take care of computers, printers and the internet.",
+            "I help staff when they have computer problems (troubleshooting).",
+            "I run errands to town and help with other office duties when needed.",
+            "I am learning how SACCOs work from the inside.",
         ],
     },
     {
@@ -108,20 +96,20 @@ EXPERIENCE = [
         "org": "Jordan Design Hub (JD Hub)",
         "meta": "Kampala, Uganda  |  2025 - Present",
         "bullets": [
-            "Founded and run Jordan Design Hub, delivering web and mobile apps, an online academy, ICT consultancy and media services to schools, SACCOs, clinics, SMEs and churches in Uganda.",
-            "Took more than a dozen products from idea to a working, deployed state - web platforms, mobile apps, desktop software and AI tools (full list under Key Projects).",
-            "Handle the whole journey: listening to the client, deciding what to build, building it with AI-assisted development (OpenHands), testing, deploying, and explaining it back to the client.",
-            "Set up automated processes that generate whitepaper PDFs, 48 lesson-outline PDFs, 90 marketing posters and a promo video.",
-            "Design the brand, marketing materials and content that promote the products, and manage the budgets behind each project.",
+            "I started Jordan Design Hub, where I build websites, simple apps and design work for schools, churches, small businesses and SACCOs.",
+            "I listen to what the client needs, plan the work, build it (using AI tools such as OpenHands), test it and explain it back to them.",
+            "I have built several working systems. Some are now used by churches and schools.",
+            "I also design posters, logos and videos for clients.",
+            "I handle the money and planning for each project myself.",
         ],
     },
     {
         "role": "Team Lead - Media & Technical Operations",
-        "org": "Freelance / Ministry & Events",
+        "org": "Freelance / Church & Events",
         "meta": "2024 - Present",
         "bullets": [
-            "Oversaw translation services, sound systems and media production for services and events.",
-            "Managed technical setups for communication and public engagement, including livestreaming.",
+            "I lead a small team that runs sound, media and translation for services and events.",
+            "I set up and run the equipment and help with livestreaming.",
         ],
     },
     {
@@ -129,7 +117,7 @@ EXPERIENCE = [
         "org": "Airtel Uganda",
         "meta": "2025",
         "bullets": [
-            "Marketed Airtel internet and WiFi packages, growing customer uptake through direct engagement and follow-up.",
+            "I sold Airtel internet and WiFi packages and followed up with customers.",
         ],
     },
     {
@@ -137,7 +125,7 @@ EXPERIENCE = [
         "org": "Code Academy Uganda",
         "meta": "2025",
         "bullets": [
-            "Coached students through their coding projects at the Code Camp, building their confidence and problem-solving skills.",
+            "I helped students with their coding projects and built their confidence.",
         ],
     },
     {
@@ -145,7 +133,7 @@ EXPERIENCE = [
         "org": "Destiny College International",
         "meta": "2025",
         "bullets": [
-            "Delivered comprehensive STEM education, improving student performance through practical, engaging lessons.",
+            "I taught Physics and Mathematics and helped students improve their performance.",
         ],
     },
     {
@@ -153,7 +141,7 @@ EXPERIENCE = [
         "org": "Credit Watch Services International",
         "meta": "2025",
         "bullets": [
-            "Assessed clients' finances and gave structured financial guidance, supporting sound lending decisions.",
+            "I checked clients' finances and gave them simple financial advice.",
         ],
     },
     {
@@ -161,7 +149,7 @@ EXPERIENCE = [
         "org": "Semuto Senior Secondary School",
         "meta": "2024 - 2025",
         "bullets": [
-            "Designed and delivered effective digital learning strategies, helping students build practical computer skills.",
+            "I taught computer skills and helped students learn practical ICT.",
         ],
     },
     {
@@ -169,7 +157,7 @@ EXPERIENCE = [
         "org": "Apex International University",
         "meta": "2023 - 2024",
         "bullets": [
-            "Executed marketing strategies that improved student engagement and enrolment interest.",
+            "I did marketing that increased student interest and enrolment.",
         ],
     },
     {
@@ -177,7 +165,7 @@ EXPERIENCE = [
         "org": "Magix Graphics",
         "meta": "2022 - 2023",
         "bullets": [
-            "Developed promotional materials and designs that enhanced brand visibility.",
+            "I designed posters and other materials for clients.",
         ],
     },
     {
@@ -185,86 +173,69 @@ EXPERIENCE = [
         "org": "Jajopa International Limited",
         "meta": "2019 - 2021",
         "bullets": [
-            "Conducted awareness campaigns and product distribution, growing product reach.",
+            "I carried out awareness campaigns and distributed products.",
         ],
     },
 ]
 
-# Financial / institutional systems
+# Honest project list: what is in use, what is still being built.
 PROJECTS = [
-    ("ClinicSync - Clinic, Pharmacy & Drug-Shop System (live, Android + Windows + Linux)", [
-        "An offline-first hospital, clinic and drug-shop system for low-resource settings: all reads and writes hit the local database first and sync to the cloud when the network returns.",
-        "Point-of-sale with fast drug search, selling by tablet / strip / box, printable 80 mm thermal receipts; daily expenses; and a one-click end-of-day balance sheet with MTN/Airtel mobile-money reconciliation.",
-        "Inventory with FEFO (first-expire-first-out) batch expiry and reorder levels; tiered SaaS plans (Basic / Premium / Pro).",
-        "Shipped installers for Android (APK), Windows (EXE) and Linux (AppImage / .deb), with device-bound activation licensing.",
-        "Built with React/Vite, Tailwind, Express, Prisma and PouchDB.",
+    ("Attendance Hub - Church & Event Attendance (in use)", [
+        "A system that records who attends church services and events, keeps member details and prints reports.",
+        "It is running on a computer, and I also made an Android app version.",
     ]),
-    ("JD Hub CBS - Co-operative Banking System for SACCOs (prototype)", [
-        "A modern core-banking system for SACCOs and credit unions, re-branded from a UCSCU CBS client.",
-        "Multi-user demo hub that gives each user an isolated instance behind a reverse proxy (JupyterHub-style).",
-        "Built with React 18, TypeScript, MUI, Apollo GraphQL and a mock GraphQL backend.",
+    ("School Management System (in use)", [
+        "Helps a school manage students, teachers, fees, marks and reports. It works without internet.",
+        "It is installed and used by a school.",
     ]),
-    ("MyMarket.ug - Multi-Vendor Marketplace (live)", [
-        "An online marketplace where Ugandan vendors each get their own shop page; customers browse and buy without an account.",
-        "Takes real mobile-money payments through Flutterwave (MTN MoMo / Airtel); product photos are compressed for fast loading on 3G.",
-        "Built with Python, Flask, SQLAlchemy, Tailwind CSS and Alpine.js.",
+    ("Savings Bank SACCO App (in use)", [
+        "A simple savings and credit app for SACCO members, made with Flutter.",
     ]),
-    ("BizDocs - Invoicing for Small Businesses (live)", [
-        "An offline-first Android app that creates invoices, receipts, quotations and letters, with finger-signature locking and an audit trail.",
-        "Handles URA TIN details, UGX amounts and MTN/Airtel mobile-money payment tracking; exports to A4 or thermal PDF.",
-        "Built with Flutter (Dart).",
+    ("Church Media & Sound (ongoing)", [
+        "I run sound, media and livestreaming for church services and events, and train others to do it.",
     ]),
-    ("UCSCU Connect - SACCO Apex Platform (in progress)", [
-        "A platform to help UCSCU run apex operations and internal workplace processes digitally (see the UCSCU role above).",
-        "Built with Python, Flask and SQLAlchemy.",
+    ("ClinicSync - Clinic & Pharmacy System (in development)", [
+        "A system for clinics and drug shops: sales, stock with expiry dates, daily expenses and end-of-day cash.",
+        "It is still being built and tested, not yet in use.",
     ]),
-    ("Offline-First School Management System (in use)", [
-        "Covers students, teachers, fees, marks and reports, works without internet, and uses 9 role-based access levels; licensed per school and tied to the computer (HWID).",
-        "Includes a QR parent kiosk and a multi-tenant cloud hub for sync, licensing and backups.",
-        "Built with Django as an installable desktop application.",
+    ("UCSCU Connect (in development)", [
+        "A system being built to help UCSCU with its work. It is still in development and not yet in use.",
     ]),
-    ("Attendance Hub - Church & Event Check-in (web + native Android)", [
-        "A check-in system for churches and events with member registration, reports and Excel export; the native Android version needs no server or internet at all.",
-        "The Android app adds LAN device linking so several phones on the same Wi-Fi share attendance in real time, plus activation keys and PDF reports.",
-        "Built with Django (web) and Kotlin + Room + NanoHTTPD (Android).",
+    ("JD Hub CBS - SACCO Banking System (prototype)", [
+        "A banking-style system for SACCOs, built as a prototype to learn how core banking works.",
     ]),
-    ("Kids AI Studio - Generative-AI Kids' Video Maker (open source)", [
-        "Turns one sentence into a finished animated kids' story video or sing-along song, using open-source generative AI models on a free Kaggle GPU.",
-        "Generates scenes, music, narration and captions into a finished MP4, with an image-to-video mode for personal pictures.",
-        "Built in Python with ffmpeg and text-to-video / image-to-video models.",
+    ("MyMarket.ug - Online Market (in development)", [
+        "An online market where vendors can show their goods and customers can pay by mobile money. Still being finished.",
     ]),
-    ("MT5 Algorithmic Trading Bot (open source)", [
-        "A discipline-first MetaTrader 5 bot with ML signal generation (RandomForest), a 0.01-lot cap, a $10 daily circuit breaker, an 80/20 profit vault and Discord remote control.",
-        "Includes a vectorized backtester with walk-forward out-of-sample validation and per-strategy kill switches.",
-        "Built in Python (scikit-learn, MT5 API).",
+    ("BizDocs - Invoices for Small Businesses (in development)", [
+        "An app for making invoices, receipts and quotations for small businesses. Still being built.",
     ]),
-    ("Savings Bank SACCO App (recovered & improved)", [
-        "A Flutter savings-and-credit app for SACCO members, recovered and improved from an earlier build.",
-        "Built with Flutter (Dart).",
+    ("Kids AI Studio (prototype)", [
+        "A fun project that turns one sentence into a short children's video or song using AI.",
     ]),
-    ("JD Hub - Company Website & Platform (live)", [
-        "The public site for Jordan Design Hub: systems showcase, academy catalogue, services, design gallery and WhatsApp lead capture.",
-        "Includes a simple shop with mobile-money payment and a secure 48-hour download link after approval.",
-        "Built with Django 5 and Bootstrap 5; deployed on Render.",
+    ("MT5 Trading Bot (prototype)", [
+        "A practice bot I built to learn about trading, money and risk.",
     ]),
-    ("KJ - Chat App (prototype)", [
-        "A messaging app with online status, big file sharing, voice and video calls, customisable themes, a private 'vault mode' and a social feed.",
-        "Built with Node.js, Express and Socket.IO, with an Android build packaged for testing.",
+    ("KJ Chat App (prototype)", [
+        "A chat app I built to learn how messaging apps work.",
+    ]),
+    ("JD Hub Website (in development)", [
+        "The website for my business, Jordan Design Hub.",
     ]),
 ]
 
 LEADERSHIP = [
     ("Founder & Chairperson - Apex Christian Union", "2023 - 2025",
-     "Established the Christian Union, fostering spiritual growth, collaboration and mentorship; organised large-scale outreaches and events."),
+     "I started the Christian Union at my university and led it, organising outreaches and events."),
     ("GRC - IT Faculty, Apex International University", "2023 - 2024",
-     "Represented student interests and facilitated IT faculty initiatives; advocated for student needs and strengthened academic collaboration."),
+     "I represented students and helped with faculty activities."),
     ("Team Lead - Media & Technical Operations", "2024 - Present",
-     "Led translation services, sound systems and media production; managed technical setups for communication and public engagement."),
+     "I lead the media and sound team at church."),
 ]
 
 EDUCATION = [
     ("Bachelor of Science in Information Technology",
-     "Apex International University  |  Graduated 2026 (graduation for 2024-2026 completers held together)"),
+     "Apex International University  |  Graduated 2026"),
     ("Certificate in Theology", "In progress  |  Currently studying"),
     ("Uganda Advanced Certificate of Education (UACE)", "Mbale Secondary School  |  2019 - 2020"),
     ("Uganda Certificate of Education (UCE)", "Lugazi Homestone Boarding School  |  2015 - 2018"),
@@ -272,13 +243,12 @@ EDUCATION = [
 ]
 
 SELF_TAUGHT = [
-    "Graphic design (Canva) - designing posters, branding and promotional materials",
-    "Content creation and video editing (InShot and other tools)",
-    "Church media and sound systems, plus livestreaming setups",
-    "AI agents - how they are built and used (currently learning in depth)",
-    "Generative AI for media - text-to-video and image-to-video",
-    "Web, mobile and desktop development, learned largely by building real projects",
-    "ICT training and teaching - passing skills on to students and colleagues",
+    "Graphic design with Canva - posters, logos and branding",
+    "Video editing and content creation",
+    "Church media, sound systems and livestreaming",
+    "AI tools (OpenHands) and how to build and use AI agents",
+    "Building websites and simple apps by working on real projects",
+    "Teaching and helping other people learn computer skills",
 ]
 
 LANGUAGES = [
@@ -294,23 +264,28 @@ REFERENCES = [
 ]
 
 # ----------------------------------------------------------------------------
-# DOCX
+# DOCX helpers
 # ----------------------------------------------------------------------------
-def add_hr(doc, color='0B3D91', sz='8'):
-    p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(0)
-    p.paragraph_format.space_after = Pt(6)
-    pPr = p._p.get_or_add_pPr()
-    pbdr = OxmlElement('w:pBdr')
-    bottom = OxmlElement('w:bottom')
-    bottom.set(qn('w:val'), 'single')
-    bottom.set(qn('w:sz'), sz)
-    bottom.set(qn('w:space'), '1')
-    bottom.set(qn('w:color'), color)
-    pbdr.append(bottom)
-    pPr.append(pbdr)
+def shade(element, hexcolor):
+    pPr = element._p.get_or_add_pPr() if hasattr(element, '_p') else element._tc.get_or_add_tcPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear')
+    shd.set(qn('w:color'), 'auto')
+    shd.set(qn('w:fill'), hexcolor)
+    if hasattr(element, '_p'):
+        pPr.append(shd)
+    else:
+        pPr.append(shd)
 
-def shade(paragraph, hexcolor):
+def shade_cell(cell, hexcolor):
+    tcPr = cell._tc.get_or_add_tcPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear')
+    shd.set(qn('w:color'), 'auto')
+    shd.set(qn('w:fill'), hexcolor)
+    tcPr.append(shd)
+
+def shade_para(paragraph, hexcolor):
     pPr = paragraph._p.get_or_add_pPr()
     shd = OxmlElement('w:shd')
     shd.set(qn('w:val'), 'clear')
@@ -320,14 +295,14 @@ def shade(paragraph, hexcolor):
 
 def heading(doc, text):
     p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(11)
-    p.paragraph_format.space_after = Pt(3)
-    p.paragraph_format.left_indent = Pt(4)
-    shade(p, 'E8EEF9')
+    p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.space_after = Pt(4)
+    p.paragraph_format.left_indent = Pt(0)
+    shade_para(p, NAVY)
     r = p.add_run("  " + text.upper())
     r.bold = True
-    r.font.size = Pt(11)
-    r.font.color.rgb = ACCENT
+    r.font.size = Pt(10.5)
+    r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
     return p
 
 def bullet(doc, text, bold_lead=None):
@@ -345,50 +320,52 @@ def build_docx(path):
     style.font.size = Pt(10.5)
 
     for s in doc.sections:
-        s.top_margin = Inches(0.5)
-        s.bottom_margin = Inches(0.5)
-        s.left_margin = Inches(0.6)
-        s.right_margin = Inches(0.6)
+        s.top_margin = Inches(0.45)
+        s.bottom_margin = Inches(0.45)
+        s.left_margin = Inches(0.55)
+        s.right_margin = Inches(0.55)
 
+    # Header banner (navy) with photo + name
     hdr = doc.add_table(rows=1, cols=2)
     hdr.autofit = False
-    hdr.columns[0].width = Inches(1.35)
+    hdr.columns[0].width = Inches(1.4)
     hdr.columns[1].width = Inches(5.9)
     cell_photo = hdr.cell(0, 0)
     cell_info = hdr.cell(0, 1)
+    shade_cell(cell_photo, NAVY)
+    shade_cell(cell_info, NAVY)
+
     cell_photo.paragraphs[0].text = ""
-    if os.path.exists(PHOTO):
-        cell_photo.paragraphs[0].add_run().add_picture(PHOTO, width=Inches(1.25))
     cell_photo.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    if os.path.exists(PHOTO):
+        cell_photo.paragraphs[0].add_run().add_picture(PHOTO, width=Inches(1.2))
 
     p = cell_info.paragraphs[0]
     p.paragraph_format.space_after = Pt(0)
     r = p.add_run(NAME)
     r.bold = True
-    r.font.size = Pt(20)
-    r.font.color.rgb = ACCENT
+    r.font.size = Pt(19)
+    r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
     p = cell_info.add_paragraph()
-    p.paragraph_format.space_after = Pt(1)
+    p.paragraph_format.space_after = Pt(2)
     r = p.add_run(TITLE)
-    r.font.size = Pt(10.5)
-    r.font.color.rgb = GREY
+    r.font.size = Pt(9.5)
+    r.font.color.rgb = RGBColor(0xCF, 0xE0, 0xFF)
     p = cell_info.add_paragraph()
     p.paragraph_format.space_after = Pt(0)
     r = p.add_run(" | ".join(CONTACT))
-    r.font.size = Pt(9)
-    r.font.color.rgb = DARK
+    r.font.size = Pt(8.5)
+    r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
-    add_hr(doc)
-
-    heading(doc, "Professional Summary")
+    heading(doc, "About Me")
     p = doc.add_paragraph(SUMMARY)
     p.paragraph_format.space_after = Pt(4)
 
-    heading(doc, "Profile")
-    for label, val in PROFILE:
+    heading(doc, "Quick Facts")
+    for label, val in QUICK_FACTS:
         bullet(doc, val, bold_lead=f"{label}: ")
 
-    heading(doc, "Core Skills")
+    heading(doc, "Skills")
     for label, val in SKILLS:
         bullet(doc, val, bold_lead=f"{label}: ")
 
@@ -405,15 +382,15 @@ def build_docx(path):
         p.paragraph_format.space_after = Pt(2)
         r = p.add_run(job['meta'])
         r.italic = True
-        r.font.size = Pt(9.5)
+        r.font.size = Pt(9)
         r.font.color.rgb = GREY
         for b in job['bullets']:
             bullet(doc, b)
 
-    heading(doc, "Key Projects")
+    heading(doc, "Projects & Practical Work")
     for title, bullets in PROJECTS:
         p = doc.add_paragraph()
-        p.paragraph_format.space_before = Pt(5)
+        p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(1)
         r = p.add_run(title)
         r.bold = True
@@ -437,7 +414,7 @@ def build_docx(path):
         r.bold = True
         p.add_run(detail)
 
-    heading(doc, "Self-Taught Skills")
+    heading(doc, "What I Have Learned On My Own")
     for s in SELF_TAUGHT:
         bullet(doc, s)
 
@@ -460,23 +437,22 @@ def build_pdf(path):
     navy = HexColor("#0B3D91")
     grey = HexColor("#555555")
 
-    name_s = ParagraphStyle('name', parent=styles['Title'], fontName='Helvetica-Bold',
-                            fontSize=20, textColor=navy, spaceAfter=1, leading=23)
+    name_s = ParagraphStyle('name', parent=styles['Normal'], fontName='Helvetica-Bold',
+                            fontSize=19, textColor=white, leading=22, spaceAfter=2)
     title_s = ParagraphStyle('title', parent=styles['Normal'], fontName='Helvetica',
-                             fontSize=10.5, textColor=grey, alignment=TA_LEFT, spaceAfter=2)
+                             fontSize=9.5, textColor=HexColor("#CFE0FF"), alignment=TA_LEFT, spaceAfter=3)
     contact_s = ParagraphStyle('contact', parent=styles['Normal'], fontName='Helvetica',
-                               fontSize=8.8, textColor=HexColor("#1A1A1A"), spaceAfter=2)
+                               fontSize=8.5, textColor=white, spaceAfter=0)
     h_s = ParagraphStyle('h', parent=styles['Normal'], fontName='Helvetica-Bold',
-                         fontSize=10.2, textColor=navy, spaceBefore=8, spaceAfter=3,
-                         backColor=HexColor("#E8EEF9"), borderPadding=(3, 3, 3, 3),
-                         leftIndent=3)
+                         fontSize=10.2, textColor=white, spaceBefore=9, spaceAfter=4,
+                         backColor=navy, borderPadding=(4, 4, 4, 4), leftIndent=0)
     body = ParagraphStyle('body', parent=styles['Normal'], fontName='Helvetica',
-                          fontSize=9.4, leading=12.4, spaceAfter=2, alignment=TA_LEFT)
-    bullet_s = ParagraphStyle('bul', parent=body, leftIndent=12, bulletIndent=2, spaceAfter=1.6)
+                          fontSize=9.5, leading=12.6, spaceAfter=2, alignment=TA_LEFT)
+    bullet_s = ParagraphStyle('bul', parent=body, leftIndent=12, bulletIndent=2, spaceAfter=1.8)
     role_s = ParagraphStyle('role', parent=styles['Normal'], fontName='Helvetica-Bold',
-                            fontSize=10.1, textColor=HexColor("#0B3D91"), spaceBefore=5, spaceAfter=0)
+                            fontSize=10.2, textColor=navy, spaceBefore=5, spaceAfter=0)
     meta_s = ParagraphStyle('meta', parent=styles['Normal'], fontName='Helvetica-Oblique',
-                            fontSize=8.7, textColor=grey, spaceAfter=1)
+                            fontSize=8.8, textColor=grey, spaceAfter=1)
 
     story = []
 
@@ -485,17 +461,19 @@ def build_pdf(path):
         Paragraph(TITLE, title_s),
         Paragraph(" | ".join(CONTACT), contact_s),
     ]
-    photo_cell = RLImage(PHOTO, width=32 * mm, height=41 * mm) if os.path.exists(PHOTO) else ""
+    photo_cell = RLImage(PHOTO, width=30 * mm, height=38.5 * mm) if os.path.exists(PHOTO) else ""
     header_tbl = Table([[photo_cell, info]], colWidths=[36 * mm, 145 * mm])
     header_tbl.setStyle(TableStyle([
-        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('LEFTPADDING', (0, 0), (-1, -1), 0),
-        ('RIGHTPADDING', (0, 0), (0, 0), 6),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ('BACKGROUND', (0, 0), (-1, -1), navy),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('LEFTPADDING', (0, 0), (0, 0), 8),
+        ('LEFTPADDING', (1, 0), (1, 0), 6),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+        ('TOPPADDING', (0, 0), (-1, -1), 8),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
     ]))
     story.append(header_tbl)
-    story.append(HRFlowable(width="100%", thickness=1, color=navy, spaceBefore=3, spaceAfter=2))
+    story.append(Spacer(1, 4))
 
     def h(text):
         story.append(Paragraph(text.upper(), h_s))
@@ -503,14 +481,14 @@ def build_pdf(path):
     def ul(text):
         story.append(Paragraph(text, bullet_s, bulletText='\u2022'))
 
-    h("Professional Summary")
+    h("About Me")
     story.append(Paragraph(SUMMARY, body))
 
-    h("Profile")
-    for label, val in PROFILE:
+    h("Quick Facts")
+    for label, val in QUICK_FACTS:
         story.append(Paragraph(f"<b>{label}:</b> {val}", bullet_s, bulletText='\u2022'))
 
-    h("Core Skills")
+    h("Skills")
     for label, val in SKILLS:
         story.append(Paragraph(f"<b>{label}:</b> {val}", bullet_s, bulletText='\u2022'))
 
@@ -521,7 +499,7 @@ def build_pdf(path):
         for b in job['bullets']:
             ul(b)
 
-    h("Key Projects")
+    h("Projects & Practical Work")
     for title, bullets in PROJECTS:
         story.append(Paragraph(title, role_s))
         for b in bullets:
@@ -535,7 +513,7 @@ def build_pdf(path):
     for award, detail in EDUCATION:
         story.append(Paragraph(f"<b>{award}</b> - {detail}", bullet_s, bulletText='\u2022'))
 
-    h("Self-Taught Skills")
+    h("What I Have Learned On My Own")
     for s in SELF_TAUGHT:
         ul(s)
 
@@ -559,18 +537,18 @@ def build_pdf(path):
 # ----------------------------------------------------------------------------
 def build_md(path):
     L = [f"# {NAME}", f"**{TITLE}**", "", " · ".join(CONTACT), "",
-         "> Photo: place your passport photo where the PDF/DOCX shows `photo_placeholder.jpg`.", ""]
-    L += ["## Professional Summary", SUMMARY, ""]
-    L += ["## Profile"]
-    L += [f"- **{label}:** {val}" for label, val in PROFILE]
-    L += ["", "## Core Skills"]
+         "> Photo: replace `photo_placeholder.jpg` with your passport photo, then rebuild.", ""]
+    L += ["## About Me", SUMMARY, ""]
+    L += ["## Quick Facts"]
+    L += [f"- **{label}:** {val}" for label, val in QUICK_FACTS]
+    L += ["", "## Skills"]
     L += [f"- **{label}:** {val}" for label, val in SKILLS]
     L += ["", "## Work Experience"]
     for job in EXPERIENCE:
         L += [f"### {job['role']} — {job['org']}", f"*{job['meta']}*", ""]
         L += [f"- {b}" for b in job['bullets']]
         L += [""]
-    L += ["## Key Projects"]
+    L += ["## Projects & Practical Work"]
     for title, bullets in PROJECTS:
         L += [f"### {title}"]
         L += [f"- {b}" for b in bullets]
@@ -579,7 +557,7 @@ def build_md(path):
     L += [f"- **{role}** ({when}): {desc}" for role, when, desc in LEADERSHIP]
     L += ["", "## Education & Training"]
     L += [f"- **{award}** - {detail}" for award, detail in EDUCATION]
-    L += ["", "## Self-Taught Skills"]
+    L += ["", "## What I Have Learned On My Own"]
     L += [f"- {s}" for s in SELF_TAUGHT]
     L += ["", "## Languages"]
     L += [f"- {lang}" for lang in LANGUAGES]

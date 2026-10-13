@@ -1,176 +1,155 @@
 # MUBOGI GASTAVAS JORDAN
-**ICT Professional  |  Full-Stack Developer  |  Educator, Leader & Creative**
+**ICT & Computer Skills  ·  Teaching  ·  Sales & Customer Care  ·  Media & Design**
 
 Kampala, Uganda · +256 754 687 597 · +256 768 593 543 · mubogigastavasjordan@gmail.com · github.com/Mubogi
 
-> Photo: place your passport photo where the PDF/DOCX shows `photo_placeholder.jpg`.
+> Photo: replace `photo_placeholder.jpg` with your passport photo, then rebuild.
 
-## Professional Summary
-Results-driven ICT professional with a Bachelor of Science in Information Technology and wide experience across software development, teaching, sales, finance, media and leadership. I have designed, built and shipped over a dozen working software products for Ugandan schools, SACCOs, clinics, SMEs and churches - including live marketplaces, banking and clinic systems, mobile apps and a generative-AI kids' studio. I am a self-taught multi-skilled creator: graphic design, content creation, video editing, church media and ICT training. I lead teams, plan events, manage money carefully, and I am equally comfortable in front of a class, a client or a camera. I am open to any role - part-time or full-time - and I work well under pressure.
+## About Me
+I am an ICT professional from Kampala with a degree in Information Technology. I have worked in teaching, sales, customer care, finance and media, and I also build websites and simple apps. I learn new things quickly, I am honest and hardworking, and I work well with people and under pressure. I am ready to do any job I am given and to give it my best.
 
-## Profile
-- **Role I want:** Any lucrative ICT, software, teaching, sales, media or administrative role
-- **Availability:** Full-time or part-time; short-term contracts welcome; works well under pressure
-- **Location:** Kampala, Uganda (open to remote and travel)
-- **Currently:** ICT Volunteer at UCSCU; studying a Certificate in Theology; learning AI agents
-- **Next goal:** Enrolling for a Master's in IT / Software Engineering
+## Quick Facts
+- **What I am looking for:** Any job I can do well - ICT, teaching, sales, customer care, media or office work
+- **Availability:** Full-time or part-time; ready to start anytime; can work under pressure
+- **Location:** Kampala, Uganda (ready to travel)
+- **Currently:** Volunteering at UCSCU; studying a Certificate in Theology
+- **Goal:** To keep learning and grow into a bigger role
 
-## Core Skills
-- **Software & Web Development:** Python, Django 5, Flask, SQLAlchemy, JavaScript, TypeScript, React 18, Node.js, Express, Socket.IO, GraphQL/Apollo, SQL (SQLite & PostgreSQL), REST APIs, HTML5, CSS3, Bootstrap 5, Tailwind CSS, Alpine.js, MUI, Jinja2, PWA
-- **Mobile & Desktop:** Flutter (Dart), Kotlin (native Android, Room), Capacitor, PyInstaller (Windows EXE), offline-first sync (PouchDB / IndexedDB), LAN device linking
-- **AI & Automation:** AI-assisted development with OpenHands, learning to design and build AI agents, prompt engineering, open-source generative AI (text-to-video, image-to-video), ML basics (scikit-learn), automating content and document generation (ReportLab PDFs)
-- **Data & Backend Systems:** Database design, Prisma, migrations, authentication, role-based access control, audit logging, webhooks, mobile-money payments (Flutterwave / MTN MoMo / Airtel)
-- **Creative & Media:** Graphic design (Canva, InShot), content creation, video editing, church media and sound systems, livestreaming (OBS / OpenLP), branding and promotional materials
-- **IT & Technical Support:** ICT training and teaching, computer literacy, web design, networking basics, software installation, troubleshooting, Git & GitHub, GitHub Actions, cloud deployment (Render), Linux command line
-- **Finance & Organisational Strategy:** Budgeting, credit assessment, financial management, workflow optimisation, record keeping, project planning
-- **Leadership & Communication:** Team mentorship, initiative coordination, event planning, public speaking, client relations, translation services, digital branding and campaign strategies
+## Skills
+- **ICT & Computer Skills:** Using and setting up computers, Microsoft Office (Word, Excel, PowerPoint), internet and email, fixing simple computer problems, teaching computer skills to others
+- **Websites & Apps:** I can build websites and simple apps using Python, Django, Flask, JavaScript, HTML, CSS, Flutter and Node.js, with help from AI tools such as OpenHands. I understand how they work, and I test and set them up myself.
+- **Design & Media:** Graphic design (Canva), making posters and logos, editing videos, content creation, running sound and media for church services and events, livestreaming
+- **Sales & Customer Care:** Direct sales, marketing, talking to customers, following up with clients, building good relationships with people
+- **Money & Records:** Budgeting, keeping records, assessing loans, managing small funds, organising work
+- **Leadership & People:** Leading small teams, planning events, public speaking, teaching and mentoring others, working with different kinds of people
 
 ## Work Experience
 ### ICT Volunteer — UCSCU - Uganda Cooperative Savings and Credit Union Limited
 *Kampala, Uganda  |  2026 - Present*
 
-- Building UCSCU Connect, a SACCO apex platform and internal workplace hub, to move apex operations off spreadsheets and paper.
-- Worked on the SACCO registry with dues tracking, a Central Finance Facility (CFF) inter-lending workflow, and sector KPI dashboards.
-- Helped add PEARLS quarterly reporting (WOCCU ratios) with CSV exports for regulators such as UMRA and the Bank of Uganda.
-- Contributed to the training catalogue, events and certification, insurance (CIC Africa) claims, stationery shop, announcements, and governance tools (meetings, e-voting), plus a full admin audit log.
-- Helped build workplace tools: office attendance on the local network, a visitors register, a staff discussion hub, a whistleblowing channel, document space and a shared calendar.
-- Set up role-based access so admin, staff, board, SACCO and regulator users each see only what they should.
+- I help with everyday ICT work at the office.
+- I set up and take care of computers, printers and the internet.
+- I help staff when they have computer problems (troubleshooting).
+- I run errands to town and help with other office duties when needed.
+- I am learning how SACCOs work from the inside.
 
 ### Founder & Product Builder — Jordan Design Hub (JD Hub)
 *Kampala, Uganda  |  2025 - Present*
 
-- Founded and run Jordan Design Hub, delivering web and mobile apps, an online academy, ICT consultancy and media services to schools, SACCOs, clinics, SMEs and churches in Uganda.
-- Took more than a dozen products from idea to a working, deployed state - web platforms, mobile apps, desktop software and AI tools (full list under Key Projects).
-- Handle the whole journey: listening to the client, deciding what to build, building it with AI-assisted development (OpenHands), testing, deploying, and explaining it back to the client.
-- Set up automated processes that generate whitepaper PDFs, 48 lesson-outline PDFs, 90 marketing posters and a promo video.
-- Design the brand, marketing materials and content that promote the products, and manage the budgets behind each project.
+- I started Jordan Design Hub, where I build websites, simple apps and design work for schools, churches, small businesses and SACCOs.
+- I listen to what the client needs, plan the work, build it (using AI tools such as OpenHands), test it and explain it back to them.
+- I have built several working systems. Some are now used by churches and schools.
+- I also design posters, logos and videos for clients.
+- I handle the money and planning for each project myself.
 
-### Team Lead - Media & Technical Operations — Freelance / Ministry & Events
+### Team Lead - Media & Technical Operations — Freelance / Church & Events
 *2024 - Present*
 
-- Oversaw translation services, sound systems and media production for services and events.
-- Managed technical setups for communication and public engagement, including livestreaming.
+- I lead a small team that runs sound, media and translation for services and events.
+- I set up and run the equipment and help with livestreaming.
 
 ### Direct Sales Executive — Airtel Uganda
 *2025*
 
-- Marketed Airtel internet and WiFi packages, growing customer uptake through direct engagement and follow-up.
+- I sold Airtel internet and WiFi packages and followed up with customers.
 
 ### Code Instructor (Intern) — Code Academy Uganda
 *2025*
 
-- Coached students through their coding projects at the Code Camp, building their confidence and problem-solving skills.
+- I helped students with their coding projects and built their confidence.
 
 ### Physics & Mathematics Teacher — Destiny College International
 *2025*
 
-- Delivered comprehensive STEM education, improving student performance through practical, engaging lessons.
+- I taught Physics and Mathematics and helped students improve their performance.
 
 ### Credit Officer — Credit Watch Services International
 *2025*
 
-- Assessed clients' finances and gave structured financial guidance, supporting sound lending decisions.
+- I checked clients' finances and gave them simple financial advice.
 
 ### ICT Teacher — Semuto Senior Secondary School
 *2024 - 2025*
 
-- Designed and delivered effective digital learning strategies, helping students build practical computer skills.
+- I taught computer skills and helped students learn practical ICT.
 
 ### Marketer — Apex International University
 *2023 - 2024*
 
-- Executed marketing strategies that improved student engagement and enrolment interest.
+- I did marketing that increased student interest and enrolment.
 
 ### Graphics Designer — Magix Graphics
 *2022 - 2023*
 
-- Developed promotional materials and designs that enhanced brand visibility.
+- I designed posters and other materials for clients.
 
 ### Sales Promoter — Jajopa International Limited
 *2019 - 2021*
 
-- Conducted awareness campaigns and product distribution, growing product reach.
+- I carried out awareness campaigns and distributed products.
 
-## Key Projects
-### ClinicSync - Clinic, Pharmacy & Drug-Shop System (live, Android + Windows + Linux)
-- An offline-first hospital, clinic and drug-shop system for low-resource settings: all reads and writes hit the local database first and sync to the cloud when the network returns.
-- Point-of-sale with fast drug search, selling by tablet / strip / box, printable 80 mm thermal receipts; daily expenses; and a one-click end-of-day balance sheet with MTN/Airtel mobile-money reconciliation.
-- Inventory with FEFO (first-expire-first-out) batch expiry and reorder levels; tiered SaaS plans (Basic / Premium / Pro).
-- Shipped installers for Android (APK), Windows (EXE) and Linux (AppImage / .deb), with device-bound activation licensing.
-- Built with React/Vite, Tailwind, Express, Prisma and PouchDB.
+## Projects & Practical Work
+### Attendance Hub - Church & Event Attendance (in use)
+- A system that records who attends church services and events, keeps member details and prints reports.
+- It is running on a computer, and I also made an Android app version.
 
-### JD Hub CBS - Co-operative Banking System for SACCOs (prototype)
-- A modern core-banking system for SACCOs and credit unions, re-branded from a UCSCU CBS client.
-- Multi-user demo hub that gives each user an isolated instance behind a reverse proxy (JupyterHub-style).
-- Built with React 18, TypeScript, MUI, Apollo GraphQL and a mock GraphQL backend.
+### School Management System (in use)
+- Helps a school manage students, teachers, fees, marks and reports. It works without internet.
+- It is installed and used by a school.
 
-### MyMarket.ug - Multi-Vendor Marketplace (live)
-- An online marketplace where Ugandan vendors each get their own shop page; customers browse and buy without an account.
-- Takes real mobile-money payments through Flutterwave (MTN MoMo / Airtel); product photos are compressed for fast loading on 3G.
-- Built with Python, Flask, SQLAlchemy, Tailwind CSS and Alpine.js.
+### Savings Bank SACCO App (in use)
+- A simple savings and credit app for SACCO members, made with Flutter.
 
-### BizDocs - Invoicing for Small Businesses (live)
-- An offline-first Android app that creates invoices, receipts, quotations and letters, with finger-signature locking and an audit trail.
-- Handles URA TIN details, UGX amounts and MTN/Airtel mobile-money payment tracking; exports to A4 or thermal PDF.
-- Built with Flutter (Dart).
+### Church Media & Sound (ongoing)
+- I run sound, media and livestreaming for church services and events, and train others to do it.
 
-### UCSCU Connect - SACCO Apex Platform (in progress)
-- A platform to help UCSCU run apex operations and internal workplace processes digitally (see the UCSCU role above).
-- Built with Python, Flask and SQLAlchemy.
+### ClinicSync - Clinic & Pharmacy System (in development)
+- A system for clinics and drug shops: sales, stock with expiry dates, daily expenses and end-of-day cash.
+- It is still being built and tested, not yet in use.
 
-### Offline-First School Management System (in use)
-- Covers students, teachers, fees, marks and reports, works without internet, and uses 9 role-based access levels; licensed per school and tied to the computer (HWID).
-- Includes a QR parent kiosk and a multi-tenant cloud hub for sync, licensing and backups.
-- Built with Django as an installable desktop application.
+### UCSCU Connect (in development)
+- A system being built to help UCSCU with its work. It is still in development and not yet in use.
 
-### Attendance Hub - Church & Event Check-in (web + native Android)
-- A check-in system for churches and events with member registration, reports and Excel export; the native Android version needs no server or internet at all.
-- The Android app adds LAN device linking so several phones on the same Wi-Fi share attendance in real time, plus activation keys and PDF reports.
-- Built with Django (web) and Kotlin + Room + NanoHTTPD (Android).
+### JD Hub CBS - SACCO Banking System (prototype)
+- A banking-style system for SACCOs, built as a prototype to learn how core banking works.
 
-### Kids AI Studio - Generative-AI Kids' Video Maker (open source)
-- Turns one sentence into a finished animated kids' story video or sing-along song, using open-source generative AI models on a free Kaggle GPU.
-- Generates scenes, music, narration and captions into a finished MP4, with an image-to-video mode for personal pictures.
-- Built in Python with ffmpeg and text-to-video / image-to-video models.
+### MyMarket.ug - Online Market (in development)
+- An online market where vendors can show their goods and customers can pay by mobile money. Still being finished.
 
-### MT5 Algorithmic Trading Bot (open source)
-- A discipline-first MetaTrader 5 bot with ML signal generation (RandomForest), a 0.01-lot cap, a $10 daily circuit breaker, an 80/20 profit vault and Discord remote control.
-- Includes a vectorized backtester with walk-forward out-of-sample validation and per-strategy kill switches.
-- Built in Python (scikit-learn, MT5 API).
+### BizDocs - Invoices for Small Businesses (in development)
+- An app for making invoices, receipts and quotations for small businesses. Still being built.
 
-### Savings Bank SACCO App (recovered & improved)
-- A Flutter savings-and-credit app for SACCO members, recovered and improved from an earlier build.
-- Built with Flutter (Dart).
+### Kids AI Studio (prototype)
+- A fun project that turns one sentence into a short children's video or song using AI.
 
-### JD Hub - Company Website & Platform (live)
-- The public site for Jordan Design Hub: systems showcase, academy catalogue, services, design gallery and WhatsApp lead capture.
-- Includes a simple shop with mobile-money payment and a secure 48-hour download link after approval.
-- Built with Django 5 and Bootstrap 5; deployed on Render.
+### MT5 Trading Bot (prototype)
+- A practice bot I built to learn about trading, money and risk.
 
-### KJ - Chat App (prototype)
-- A messaging app with online status, big file sharing, voice and video calls, customisable themes, a private 'vault mode' and a social feed.
-- Built with Node.js, Express and Socket.IO, with an Android build packaged for testing.
+### KJ Chat App (prototype)
+- A chat app I built to learn how messaging apps work.
+
+### JD Hub Website (in development)
+- The website for my business, Jordan Design Hub.
 
 ## Leadership & Volunteer Roles
-- **Founder & Chairperson - Apex Christian Union** (2023 - 2025): Established the Christian Union, fostering spiritual growth, collaboration and mentorship; organised large-scale outreaches and events.
-- **GRC - IT Faculty, Apex International University** (2023 - 2024): Represented student interests and facilitated IT faculty initiatives; advocated for student needs and strengthened academic collaboration.
-- **Team Lead - Media & Technical Operations** (2024 - Present): Led translation services, sound systems and media production; managed technical setups for communication and public engagement.
+- **Founder & Chairperson - Apex Christian Union** (2023 - 2025): I started the Christian Union at my university and led it, organising outreaches and events.
+- **GRC - IT Faculty, Apex International University** (2023 - 2024): I represented students and helped with faculty activities.
+- **Team Lead - Media & Technical Operations** (2024 - Present): I lead the media and sound team at church.
 
 ## Education & Training
-- **Bachelor of Science in Information Technology** - Apex International University  |  Graduated 2026 (graduation for 2024-2026 completers held together)
+- **Bachelor of Science in Information Technology** - Apex International University  |  Graduated 2026
 - **Certificate in Theology** - In progress  |  Currently studying
 - **Uganda Advanced Certificate of Education (UACE)** - Mbale Secondary School  |  2019 - 2020
 - **Uganda Certificate of Education (UCE)** - Lugazi Homestone Boarding School  |  2015 - 2018
 - **Primary Leaving Examination (PLE)** - Namakwekwe Primary School  |  2008 - 2014
 
-## Self-Taught Skills
-- Graphic design (Canva) - designing posters, branding and promotional materials
-- Content creation and video editing (InShot and other tools)
-- Church media and sound systems, plus livestreaming setups
-- AI agents - how they are built and used (currently learning in depth)
-- Generative AI for media - text-to-video and image-to-video
-- Web, mobile and desktop development, learned largely by building real projects
-- ICT training and teaching - passing skills on to students and colleagues
+## What I Have Learned On My Own
+- Graphic design with Canva - posters, logos and branding
+- Video editing and content creation
+- Church media, sound systems and livestreaming
+- AI tools (OpenHands) and how to build and use AI agents
+- Building websites and simple apps by working on real projects
+- Teaching and helping other people learn computer skills
 
 ## Languages
 - English - excellent (speaking, reading, writing)
