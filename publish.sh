@@ -12,7 +12,7 @@
 #
 set -euo pipefail
 
-OWNER="MAYI12333"          # change if your username differs
+OWNER="Mubogi"          # GitHub account
 REPO="cv"                  # repo name
 BRANCH="main"
 TAG="v1.0"

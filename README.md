@@ -36,7 +36,7 @@ python3 build_cv.py
 - Email: mubogigastavasjordan@gmail.com
 - Phone: +256 754 687 597 · +256 768 593 543
 - Location: Kampala, Uganda
-- GitHub: [github.com/MAYI12333](https://github.com/MAYI12333)
+- GitHub: [github.com/Mubogi](https://github.com/Mubogi)
 
 ---
 
